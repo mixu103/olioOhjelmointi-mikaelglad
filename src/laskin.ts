@@ -16,3 +16,11 @@ function AddNumbers(){
     
 }
 AddBtn.addEventListener("click", AddNumbers);
+
+function SubtractNumbers(){
+    let a = parseFloat(number1.value);
+    let b = parseFloat(number2.value);
+    let result = a - b;
+    printResult.textContent = result.toString();
+}
+SubBtn.addEventListener("click", SubtractNumbers);

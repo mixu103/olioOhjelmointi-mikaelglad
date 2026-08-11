@@ -13,4 +13,11 @@ function AddNumbers() {
     printResult.textContent = result.toString();
 }
 AddBtn.addEventListener("click", AddNumbers);
+function SubtractNumbers() {
+    let a = parseFloat(number1.value);
+    let b = parseFloat(number2.value);
+    let result = a - b;
+    printResult.textContent = result.toString();
+}
+SubBtn.addEventListener("click", SubtractNumbers);
 //# sourceMappingURL=laskin.js.map
