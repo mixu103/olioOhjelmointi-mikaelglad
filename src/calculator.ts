@@ -1,13 +1,30 @@
 const inputA = document.getElementById("a") as HTMLInputElement;
 const inputB = document.getElementById("b") as HTMLInputElement;
-const result = document.getElementById("result") as HTMLSpanElement;
-const button = document.getElementById("sumButton") as HTMLButtonElement;
 
-function sum(): void {
-    const a = Number(inputA.value);
-    const b = Number(inputB.value);
+document.getElementById("+")!.addEventListener("click", () => {
+    const result =
+        Number(inputA.value) + Number(inputB.value);
 
-    result.innerHTML = String(a + b);
-}
+    document.getElementById("result")!.innerHTML = result.toString();
+});
 
-button.addEventListener("click", sum);
+document.getElementById("-")!.addEventListener("click", () => {
+    const result =
+        Number(inputA.value) - Number(inputB.value);
+
+    document.getElementById("result")!.innerHTML = result.toString();
+});
+
+document.getElementById("*")!.addEventListener("click", () => {
+    const result =
+        Number(inputA.value) * Number(inputB.value);
+
+    document.getElementById("result")!.innerHTML = result.toString();
+});
+
+document.getElementById("/")!.addEventListener("click", () => {
+    const result =
+        Number(inputA.value) / Number(inputB.value);
+
+    document.getElementById("result")!.innerHTML = result.toString();
+});

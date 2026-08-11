@@ -1,12 +1,20 @@
 "use strict";
 const inputA = document.getElementById("a");
 const inputB = document.getElementById("b");
-const result = document.getElementById("result");
-const button = document.getElementById("sumButton");
-function sum() {
-    const a = Number(inputA.value);
-    const b = Number(inputB.value);
-    result.innerHTML = String(a + b);
-}
-button.addEventListener("click", sum);
+document.getElementById("+").addEventListener("click", () => {
+    const result = Number(inputA.value) + Number(inputB.value);
+    document.getElementById("result").innerHTML = result.toString();
+});
+document.getElementById("-").addEventListener("click", () => {
+    const result = Number(inputA.value) - Number(inputB.value);
+    document.getElementById("result").innerHTML = result.toString();
+});
+document.getElementById("*").addEventListener("click", () => {
+    const result = Number(inputA.value) * Number(inputB.value);
+    document.getElementById("result").innerHTML = result.toString();
+});
+document.getElementById("/").addEventListener("click", () => {
+    const result = Number(inputA.value) / Number(inputB.value);
+    document.getElementById("result").innerHTML = result.toString();
+});
 //# sourceMappingURL=calculator.js.map
