@@ -12,6 +12,8 @@ interface Rectangle {
     height: number
     x: number
     y: number
+    style: string
+    draw: () => void
 }
 
 // Piirto
@@ -25,27 +27,43 @@ const rectangle1: Rectangle = {
     width: 400,
     height: 200,
     x: xCenter - 200,
-    y: yCenter - 100
+    y: yCenter - 100,
+    style: "red",
+    draw: function () {
+        ctx.fillStyle = this.style
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+    }
 }
+
+rectangle1.draw()
 
 const rectangle2: Rectangle = {
     width: 400,
     height: 200,
     x: xCenter - 50,
-    y: yCenter - 25
+    y: yCenter - 25,
+    style: "green",
+    draw: function () {
+        ctx.fillStyle = this.style
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+    }
 }
+
+rectangle2.draw()
+
+drawRectangle(rectangle2, "yellow")
 
 const circle = {
     x: 100,
     y: 100,
-    radius: 150
+    radius: 150,
+    style: "blue",
+    draw: function(){
+        ctx.fillStyle = this.style;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
+        ctx.fill();
+    }
 }
 
-ctx.fillStyle = "blue"
-ctx.beginPath();
-ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
-ctx.stroke();
-ctx.fill();
-
-drawRectangle(rectangle1, "red")
-drawRectangle(rectangle2, "green")
+circle.draw()
