@@ -1,30 +1,34 @@
-export{}
+export {}
 
-const canvas: HTMLCanvasElement = document.getElementById("canvas") as HTMLCanvasElement
-const ctx: CanvasRenderingContext2D = canvas.getContext("2d")
+const canvas = document.getElementById("canvas") as HTMLCanvasElement
+const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
 const xCenter: number = canvas.width / 2
 const yCenter: number = canvas.height / 2
-const width = 400
-const height = 200
-const x2 = xCenter - (width / 2)
-const y2 = yCenter - (height / 2)
 
 
+interface Rectangle {
+    width: number
+    height: number
+    x: number
+    y: number
+}
 
-const rectangle = {
+// Piirto
+function drawRectangle(rect: Rectangle, style: string): void {
+    ctx.fillStyle = style
+    ctx.fillRect(rect.x, rect.y, rect.width, rect.height)
+}
+
+
+const rectangle1: Rectangle = {
     width: 400,
     height: 200,
     x: xCenter - 200,
     y: yCenter - 100
 }
 
-
-
-ctx.fillStyle = "red"
-ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-
-const rectangle2 = {
+const rectangle2: Rectangle = {
     width: 400,
     height: 200,
     x: xCenter - 50,
@@ -32,10 +36,5 @@ const rectangle2 = {
 }
 
 
-ctx.fillStyle = "green"
-ctx.fillRect(rectangle2.x, rectangle2.y, rectangle2.width, rectangle2.height);
-
-function drawRectangle(rectangle: { width: number; height: number; x: number; y: number;}, style:string) {
-    ctx.fillStyle = style
-    ctx.fillRect(rectangle.x, rectangle.y, rectangle.width, rectangle.height);
-}
+drawRectangle(rectangle1, "red")
+drawRectangle(rectangle2, "green")
