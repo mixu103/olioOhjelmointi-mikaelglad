@@ -44,6 +44,18 @@ const circle = {
         ctx.fill();
     }
 };
+const rectangle3 = {
+    width: 50,
+    height: 100,
+    x: xCenter + 150,
+    y: yCenter + 200,
+    style: "purple",
+    draw: function () {
+        ctx.fillStyle = this.style;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+    }
+};
+rectangle3.draw();
 circle.draw();
 export {};
 //# sourceMappingURL=shapes-demo.js.map

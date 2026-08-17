@@ -13,4 +13,4 @@ tsc -w
 
 11.8.2026 sain tehtyä laskimen valmiiksi
 
-17.8.2026
+17.8.2026 edistetty tehtäviä
