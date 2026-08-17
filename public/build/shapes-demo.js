@@ -19,6 +19,16 @@ const rectangle2 = {
     x: xCenter - 50,
     y: yCenter - 25
 };
+const circle = {
+    x: 100,
+    y: 100,
+    radius: 150
+};
+ctx.fillStyle = "blue";
+ctx.beginPath();
+ctx.arc(circle.x, circle.y, circle.radius, 0, 2 * Math.PI);
+ctx.stroke();
+ctx.fill();
 drawRectangle(rectangle1, "red");
 drawRectangle(rectangle2, "green");
 export {};
