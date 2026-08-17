@@ -1,4 +1,4 @@
-export {}
+import { Rectangle } from "./shapes.js"
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
@@ -6,53 +6,19 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 const xCenter: number = canvas.width / 2
 const yCenter: number = canvas.height / 2
 
+const rectangle: Rectangle = new Rectangle(400, 200, xCenter - 200, yCenter - 100, "red")
 
-interface Rectangle {
-    width: number
-    height: number
-    x: number
-    y: number
-    style: string
-    draw: () => void
-}
+rectangle.draw(ctx)
 
-// Piirto
-function drawRectangle(rect: Rectangle, style: string): void {
-    ctx.fillStyle = style
-    ctx.fillRect(rect.x, rect.y, rect.width, rect.height)
-}
+const rectangle2: Rectangle = new Rectangle(200, 100, xCenter - 50, yCenter - 25, "green")
 
+rectangle2.draw(ctx)
 
-const rectangle1: Rectangle = {
-    width: 400,
-    height: 200,
-    x: xCenter - 200,
-    y: yCenter - 100,
-    style: "red",
-    draw: function () {
-        ctx.fillStyle = this.style
-        ctx.fillRect(this.x, this.y, this.width, this.height)
-    }
-}
+const rectangle3: Rectangle = new Rectangle(50, 100, xCenter + 150, yCenter + 200, "purple")
 
-rectangle1.draw()
+rectangle3.draw(ctx)
 
-const rectangle2: Rectangle = {
-    width: 400,
-    height: 200,
-    x: xCenter - 50,
-    y: yCenter - 25,
-    style: "green",
-    draw: function () {
-        ctx.fillStyle = this.style
-        ctx.fillRect(this.x, this.y, this.width, this.height)
-    }
-}
-
-rectangle2.draw()
-
-drawRectangle(rectangle2, "yellow")
-
+// ympyrä jutut
 const circle = {
     x: 100,
     y: 100,
@@ -65,21 +31,5 @@ const circle = {
         ctx.fill();
     }
 }
-
-
-const rectangle3: Rectangle = {
-    width: 50,
-    height: 100,
-    x: xCenter + 150,
-    y: yCenter + 200,
-    style: "purple",
-    draw: function () {
-        ctx.fillStyle = this.style
-        ctx.fillRect(this.x, this.y, this.width, this.height)
-    }
-}
-
-rectangle3.draw()
-
 
 circle.draw()

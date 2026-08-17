@@ -1,37 +1,15 @@
+import { Rectangle } from "./shapes.js";
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const xCenter = canvas.width / 2;
 const yCenter = canvas.height / 2;
-// Piirto
-function drawRectangle(rect, style) {
-    ctx.fillStyle = style;
-    ctx.fillRect(rect.x, rect.y, rect.width, rect.height);
-}
-const rectangle1 = {
-    width: 400,
-    height: 200,
-    x: xCenter - 200,
-    y: yCenter - 100,
-    style: "red",
-    draw: function () {
-        ctx.fillStyle = this.style;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-};
-rectangle1.draw();
-const rectangle2 = {
-    width: 400,
-    height: 200,
-    x: xCenter - 50,
-    y: yCenter - 25,
-    style: "green",
-    draw: function () {
-        ctx.fillStyle = this.style;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-};
-rectangle2.draw();
-drawRectangle(rectangle2, "yellow");
+const rectangle = new Rectangle(400, 200, xCenter - 200, yCenter - 100, "red");
+rectangle.draw(ctx);
+const rectangle2 = new Rectangle(200, 100, xCenter - 50, yCenter - 25, "green");
+rectangle2.draw(ctx);
+const rectangle3 = new Rectangle(50, 100, xCenter + 150, yCenter + 200, "purple");
+rectangle3.draw(ctx);
+// ympyrä jutut
 const circle = {
     x: 100,
     y: 100,
@@ -44,18 +22,5 @@ const circle = {
         ctx.fill();
     }
 };
-const rectangle3 = {
-    width: 50,
-    height: 100,
-    x: xCenter + 150,
-    y: yCenter + 200,
-    style: "purple",
-    draw: function () {
-        ctx.fillStyle = this.style;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-};
-rectangle3.draw();
 circle.draw();
-export {};
 //# sourceMappingURL=shapes-demo-oop.js.map
