@@ -1,4 +1,4 @@
-import { Rectangle } from "./shapes.js";
+import { Rectangle, Circle } from "./shapes.js";
 const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const xCenter = canvas.width / 2;
@@ -10,17 +10,11 @@ rectangle2.draw(ctx);
 const rectangle3 = new Rectangle(50, 100, xCenter + 150, yCenter + 200, "purple");
 rectangle3.draw(ctx);
 // ympyrä jutut
-const circle = {
-    x: 100,
-    y: 100,
-    radius: 150,
-    style: "blue",
-    draw: function () {
-        ctx.fillStyle = this.style;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.radius, 0, 2 * Math.PI);
-        ctx.fill();
-    }
-};
-circle.draw();
+const circle = new Circle(150, 150, 100, "blue");
+circle.draw(ctx);
+const circle2 = new Circle(400, 400, 50, "orange");
+circle2.draw(ctx);
+circle2.style = "violet";
+circle2.radius = 75;
+circle2.draw(ctx);
 //# sourceMappingURL=shapes-demo-oop.js.map
