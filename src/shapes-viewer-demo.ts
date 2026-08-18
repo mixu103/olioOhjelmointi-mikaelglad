@@ -12,3 +12,6 @@ shapeViewer.addShapes([
     new Circle(400, 100, 75, "orange"),
     new Circle(600, 400, 100, "purple")
 ])
+
+console.log(shapeViewer.toString())
+

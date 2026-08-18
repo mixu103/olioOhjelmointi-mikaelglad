@@ -14,5 +14,10 @@ export class ShapeViewer {
     draw() {
         this.shapes.forEach(shape => shape.draw(this.ctx));
     }
+    toString() {
+        let result = " ShapeViewer with shapes:\n";
+        this.shapes.forEach(shape => result += shape.toString() + "\n");
+        return result;
+    }
 }
 //# sourceMappingURL=shape-viewer.js.map
