@@ -1,0 +1,1 @@
+{"version":3,"file":"shape-viewer.js","sourceRoot":"","sources":["../../src/shape-viewer.ts"],"names":[],"mappings":"AAEA,MAAM,OAAO,WAAW;IAOpB,YAAY,aAAgC;QACxC,IAAI,CAAC,GAAG,GAAG,aAAa,CAAC,UAAU,CAAC,IAAI,CAAC,CAAA;IAC7C,CAAC;IAED,SAAS,CAAC,MAAe;IAEzB,CAAC;IAED,SAAS,CAAC,MAAe;IAEzB,CAAC;IAED,IAAI;IAEJ,CAAC;CAEJ"}
