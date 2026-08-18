@@ -22,7 +22,7 @@ class Size {
 }
 
 
-export class Shape {
+export abstract class Shape {
 
     style: string
 
@@ -30,10 +30,12 @@ export class Shape {
         this.style = style
     }
 
+    abstract draw(ctx: CanvasRenderingContext2D): void
 }
 
 
-export class Rectangle extends Shape {
+
+export  class Rectangle extends Shape {
 
     location: Point
 
@@ -47,7 +49,7 @@ export class Rectangle extends Shape {
         this.style = style
     }
 
-    draw(ctx: CanvasRenderingContext2D) {
+    draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.style
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height)
     }
