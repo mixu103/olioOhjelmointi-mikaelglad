@@ -10,8 +10,14 @@ class Size {
         this.height = height;
     }
 }
-export class Rectangle {
+export class Shape {
+    constructor(style) {
+        this.style = style;
+    }
+}
+export class Rectangle extends Shape {
     constructor(x, y, width, height, style) {
+        super(style);
         this.location = new Point(x, y);
         this.size = new Size(width, height);
         this.style = style;
@@ -21,17 +27,15 @@ export class Rectangle {
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height);
     }
 }
-export class Circle {
+export class Circle extends Shape {
     constructor(x, y, radius, style) {
+        super(style);
         this.center = new Point(x, y);
         this.radius = radius;
-        this.style = style;
     }
     draw(ctx) {
         ctx.fillStyle = this.style;
-        ctx.beginPath();
         ctx.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);
-        ctx.fill();
     }
 }
 //# sourceMappingURL=shapes.js.map
