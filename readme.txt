@@ -11,6 +11,8 @@ tsc
 tsc -w
 
 
+3.10 on viimeinen tehtävä
+
 11.8.2026 sain tehtyä laskimen valmiiksi
 
 17.8.2026 edistetty tehtäviä

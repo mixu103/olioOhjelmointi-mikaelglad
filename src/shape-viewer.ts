@@ -1,6 +1,6 @@
-import { Shape } from "./shapes";
+import { Shape } from "./shapes.js";
 
-export class shapeViewer {
+export class ShapeViewer {
 
 
     ctx: CanvasRenderingContext2D
@@ -8,19 +8,22 @@ export class shapeViewer {
     shapes: Shape[]
 
     constructor(canvasElement: HTMLCanvasElement) {
-        this.ctx = canvasElement.getContext("2d")
+        this.ctx = canvasElement.getContext("2d")!
+        this.shapes = []
     }
 
     addShapes(shapes: Shape[]): void {
-
+        this.shapes.push(...shapes)
+        this.draw()
     }
 
-    addShapes(shapes: Shape[]): void {
-        
+    addShape(shape: Shape): void {
+        this.shapes.push(shape)
+        this.draw()
     }
 
     draw(): void {
-
+        this.shapes.forEach(shape => shape.draw(this.ctx))
     }
 
 }
