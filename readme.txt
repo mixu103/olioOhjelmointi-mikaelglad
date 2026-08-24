@@ -19,4 +19,4 @@ tsc -w
 
 18.8.2026 2.7 astiin tehty
 
-24.8.2026 3.a asti tehty
+24.8.2026 3.1 kesken
