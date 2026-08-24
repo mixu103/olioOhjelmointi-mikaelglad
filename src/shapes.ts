@@ -1,8 +1,17 @@
 class Point {
+
+    /**
+     * Defines a location on a 2d plane
+     */
     private _x: number
 
     private _y: number
 
+    /**
+     * 
+     * @param x the x coordinate of the newly created point
+     * @param y the y coordinate of the newly created point
+     */
     public constructor(x: number, y: number) {
         this._x = x
         this._y = y
@@ -17,6 +26,10 @@ class Point {
     }
 
 
+    /**
+     * 
+     * @returns this point in string format
+     */
     public toString(): string {
         return `(${this._x}, ${this._y})`
     }
@@ -24,23 +37,40 @@ class Point {
 
 
 class Size {
+    /**
+     * width and height of the Size
+     */
     private _width: number
 
     private _height: number
 
+    /**
+     * Creates a new Size with the width and height
+     * @param width width is widt
+     * @param height height is height
+     */
     public constructor(width: number, height: number) {
         this._width = width
         this._height = height
     }
 
+    /**
+     * Gets the width
+     */
     public get width(): number {
         return this._width
     }
 
+    /**
+     * Gets the height
+     */
     public get height(): number {
         return this._height
     }
 
+    /** 
+     * String of the Size
+     */
     public toString(): string {
         return `(${this._width}, ${this._height})`
     }
@@ -48,15 +78,28 @@ class Size {
 
 export interface Shape {
     
+    /**
+     * Draws shape
+     * @param ctx canvasrendering context used for draw
+     */
     draw(ctx: CanvasRenderingContext2D): void
 
+    /**
+     * String represantion
+     */
     toString(): string
 }
 
 export abstract class BaseShape implements Shape {
-
+/**
+ * Functionality for shapes
+ */
     private _style: string
 
+    /**
+     * 
+     * @param style style used to draw shape
+     */
     public constructor(style: string) {
         this._style = style
     }
@@ -65,12 +108,16 @@ export abstract class BaseShape implements Shape {
         return this._style
     }
 
-    public set style(style): string {
+    public set style(style: string): void {
         this._style = style
     }
 
     public abstract draw(ctx: CanvasRenderingContext2D): void
 
+    /**
+     * 
+     * @returns style of the shape
+     */
     public toString(): string {
         return `Shape with style ${this.style}`
     }
@@ -79,11 +126,20 @@ export abstract class BaseShape implements Shape {
 
 
 export class Rectangle extends BaseShape {
-
+/**
+ *  rectangle draw on canvas
+ */
     private location: Point
 
     private size: Size
-  
+  /**
+   * 
+   * @param x x coordinate
+   * @param y y coordinate
+   * @param width width
+   * @param height height
+   * @param style style used
+   */
     public constructor(x: number, y: number,  width: number, height: number, style: string) {
         super(style)
         this.location = new Point(x, y)
@@ -91,6 +147,10 @@ export class Rectangle extends BaseShape {
         this.style = style
     }
 
+    /**
+     * 
+     * @param ctx canvas rendering used to draw
+     */
     public override draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.style
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height)
@@ -103,20 +163,30 @@ export class Rectangle extends BaseShape {
 }
 
 export class Circle extends BaseShape {
-
+/**
+ * Circle draw on canvas
+ */
     private center: Point
 
     private radius: number
 
-
-
+    /**
+     * 
+     * @param x x coordinate
+     * @param y  x coordinate
+     * @param radius radius of the circle
+     * @param style style of the circle
+     */
     public constructor(x: number, y: number, radius: number, style: string) {
         super(style)
         this.center = new Point(x, y)
         this.radius = radius
     }
 
-
+    /**
+     * 
+     * @param ctx ctx used to draw to canvas
+     */
     public override draw(ctx: CanvasRenderingContext2D) {
         ctx.fillStyle = this.style
         ctx.beginPath()

@@ -1,4 +1,9 @@
 class Point {
+    /**
+     *
+     * @param x the x coordinate of the newly created point
+     * @param y the y coordinate of the newly created point
+     */
     constructor(x, y) {
         this._x = x;
         this._y = y;
@@ -9,26 +14,48 @@ class Point {
     get y() {
         return this._y;
     }
+    /**
+     *
+     * @returns this point in string format
+     */
     toString() {
         return `(${this._x}, ${this._y})`;
     }
 }
 class Size {
+    /**
+     * Creates a new Size with the width and height
+     * @param width width is widt
+     * @param height height is height
+     */
     constructor(width, height) {
         this._width = width;
         this._height = height;
     }
+    /**
+     * Gets the width
+     */
     get width() {
         return this._width;
     }
+    /**
+     * Gets the height
+     */
     get height() {
         return this._height;
     }
+    /**
+     * String of the Size
+     */
     toString() {
         return `(${this._width}, ${this._height})`;
     }
 }
 export class BaseShape {
+    /**
+     *
+     * @param style style used to draw shape
+     */
     constructor(style) {
         this._style = style;
     }
@@ -38,17 +65,33 @@ export class BaseShape {
     set style(style) {
         this._style = style;
     }
+    /**
+     *
+     * @returns style of the shape
+     */
     toString() {
         return `Shape with style ${this.style}`;
     }
 }
 export class Rectangle extends BaseShape {
+    /**
+     *
+     * @param x x coordinate
+     * @param y y coordinate
+     * @param width width
+     * @param height height
+     * @param style style used
+     */
     constructor(x, y, width, height, style) {
         super(style);
         this.location = new Point(x, y);
         this.size = new Size(width, height);
         this.style = style;
     }
+    /**
+     *
+     * @param ctx canvas rendering used to draw
+     */
     draw(ctx) {
         ctx.fillStyle = this.style;
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height);
@@ -58,11 +101,22 @@ export class Rectangle extends BaseShape {
     }
 }
 export class Circle extends BaseShape {
+    /**
+     *
+     * @param x x coordinate
+     * @param y  x coordinate
+     * @param radius radius of the circle
+     * @param style style of the circle
+     */
     constructor(x, y, radius, style) {
         super(style);
         this.center = new Point(x, y);
         this.radius = radius;
     }
+    /**
+     *
+     * @param ctx ctx used to draw to canvas
+     */
     draw(ctx) {
         ctx.fillStyle = this.style;
         ctx.beginPath();
