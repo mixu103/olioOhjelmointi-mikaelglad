@@ -1,24 +1,42 @@
 class Point {
     constructor(x, y) {
-        this.x = x;
-        this.y = y;
+        this._x = x;
+        this._y = y;
+    }
+    get x() {
+        return this._x;
+    }
+    get y() {
+        return this._y;
     }
     toString() {
-        return `(${this.x}, ${this.y})`;
+        return `(${this._x}, ${this._y})`;
     }
 }
 class Size {
     constructor(width, height) {
-        this.width = width;
-        this.height = height;
+        this._width = width;
+        this._height = height;
+    }
+    get width() {
+        return this._width;
+    }
+    get height() {
+        return this._height;
     }
     toString() {
-        return `(${this.width}, ${this.height})`;
+        return `(${this._width}, ${this._height})`;
     }
 }
 export class BaseShape {
     constructor(style) {
-        this.style = style;
+        this._style = style;
+    }
+    get style() {
+        return this._style;
+    }
+    set style(style) {
+        this._style = style;
     }
     toString() {
         return `Shape with style ${this.style}`;
@@ -34,7 +52,6 @@ export class Rectangle extends BaseShape {
     draw(ctx) {
         ctx.fillStyle = this.style;
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height);
-        super.toString();
     }
     toString() {
         return `Rectangle with location ${this.location.toString}, radius ${this.size.toString} and style ${super.toString()}]`;

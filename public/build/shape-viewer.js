@@ -1,4 +1,4 @@
-export class ShapeViewer {
+export class ShapeViewerImpl {
     constructor(canvasElement) {
         this.ctx = canvasElement.getContext("2d");
         this.shapes = [];

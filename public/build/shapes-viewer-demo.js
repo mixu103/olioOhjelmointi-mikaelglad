@@ -1,6 +1,6 @@
-import { ShapeViewer } from "./shape-viewer.js";
+import { ShapeViewerImpl } from "./shape-viewer.js";
 import { Circle, Rectangle } from "./shapes.js";
-const shapeViewer = new ShapeViewer(document.getElementById("canvas"));
+const shapeViewer = new ShapeViewerImpl(document.getElementById("canvas"));
 shapeViewer.addShapes([
     new Rectangle(100, 100, 200, 150, "red"),
     new Rectangle(300, 300, 150, 100, "green"),
