@@ -1,7 +1,14 @@
 import { Shape } from "./shapes.js";
 
+/**
+ * viewer that displays and manages shapes
+ *  */
 export interface ShapeViewer {
 
+    /**
+     * Adds shapes to viewer
+     * @param shapes shapes to add
+     */
     addShapes(shapes: Shape[]): void
 
     addShape(shape: Shape): void
