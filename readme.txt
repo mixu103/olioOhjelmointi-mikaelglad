@@ -1,4 +1,3 @@
-
 Push komento Githubiin
 
 git add .
