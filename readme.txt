@@ -18,3 +18,5 @@ tsc -w
 17.8.2026 edistetty tehtäviä
 
 18.8.2026 2.7 astiin tehty
+
+24.8.2026 
