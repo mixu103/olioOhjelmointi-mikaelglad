@@ -3,14 +3,20 @@ class Point {
         this.x = x;
         this.y = y;
     }
+    toString() {
+        return `(${this.x}, ${this.y})`;
+    }
 }
 class Size {
     constructor(width, height) {
         this.width = width;
         this.height = height;
     }
+    toString() {
+        return `(${this.width}, ${this.height})`;
+    }
 }
-export class Shape {
+export class BaseShape {
     constructor(style) {
         this.style = style;
     }
@@ -18,7 +24,7 @@ export class Shape {
         return `Shape with style ${this.style}`;
     }
 }
-export class Rectangle extends Shape {
+export class Rectangle extends BaseShape {
     constructor(x, y, width, height, style) {
         super(style);
         this.location = new Point(x, y);
@@ -31,10 +37,10 @@ export class Rectangle extends Shape {
         super.toString();
     }
     toString() {
-        return `Rectangle with location ${this.location}, radius ${this.size} and style ${super.toString()}]`;
+        return `Rectangle with location ${this.location.toString}, radius ${this.size.toString} and style ${super.toString()}]`;
     }
 }
-export class Circle extends Shape {
+export class Circle extends BaseShape {
     constructor(x, y, radius, style) {
         super(style);
         this.center = new Point(x, y);
@@ -47,7 +53,7 @@ export class Circle extends Shape {
         ctx.fill();
     }
     toString() {
-        return `Circle with center ${this.center}, radius ${this.radius} and style ${super.toString()}]`;
+        return `Circle with center ${this.center.toString}, radius ${this.radius} and style ${super.toString()}]`;
     }
 }
 //# sourceMappingURL=shapes.js.map

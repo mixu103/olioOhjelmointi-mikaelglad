@@ -7,6 +7,10 @@ class Point {
         this.x = x
         this.y = y
     }
+
+    toString(): string {
+        return `(${this.x}, ${this.y})`
+    }
 }
 
 
@@ -19,10 +23,19 @@ class Size {
         this.width = width
         this.height = height
     }
+
+    toString(): string {
+        return `(${this.width}, ${this.height})`
 }
 
+export interface Shape {
+    
+    draw(ctx: CanvasRenderingContext2D): void
 
-export abstract class Shape {
+    toString(): string
+}
+
+export abstract class BaseShape implements Shape {
 
     style: string
 
@@ -39,7 +52,7 @@ export abstract class Shape {
 
 
 
-export  class Rectangle extends Shape {
+export class Rectangle extends BaseShape {
 
     location: Point
 
@@ -60,12 +73,12 @@ export  class Rectangle extends Shape {
     }
 
         toString(): string {
-        return `Rectangle with location ${this.location}, radius ${this.size} and style ${super.toString()}]`
+        return `Rectangle with location ${this.location.toString}, radius ${this.size.toString} and style ${super.toString()}]`
     }
 
 }
 
-export class Circle extends Shape {
+export class Circle extends BaseShape {
 
     center: Point
 
@@ -88,6 +101,6 @@ export class Circle extends Shape {
     }
 
     toString(): string {
-        return `Circle with center ${this.center}, radius ${this.radius} and style ${super.toString()}]`
+        return `Circle with center ${this.center.toString}, radius ${this.radius} and style ${super.toString()}]`
     }
 }
