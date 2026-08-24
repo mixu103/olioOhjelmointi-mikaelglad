@@ -158,9 +158,33 @@ export class Rectangle extends BaseShape {
 
    public override toString(): string {
     return `Rectangle with location ${this.location.toString()}, size ${this.size.toString()} and style ${super.toString()}`
+    }
 }
 
+export class Square extends Rectangle {
+       /**
+     * Creates a new square with the specified position, side length and style.
+     * @param x the X coordinate of the square.
+     * @param y the Y coordinate of the square.
+     * @param side the length of each side of the square.
+     * @param style the style used to draw the square.
+     */
+    public constructor(
+        x: number,
+        y: number,
+        side: number,
+        style: string
+    ) {
+        super(x, y, side, side, style)
+    }
 
+    /**
+     * Returns a string representation of the square.
+     * @returns a string describing the square.
+     */
+    public override toString(): string {
+        return `Square with style ${this.style}`
+    }
 }
 
 export class Circle extends BaseShape {
