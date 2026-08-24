@@ -108,7 +108,7 @@ export abstract class BaseShape implements Shape {
         return this._style
     }
 
-    public set style(style: string): void {
+    public set style(style: string) {
         this._style = style
     }
 
@@ -156,9 +156,10 @@ export class Rectangle extends BaseShape {
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height)
     }
 
-    public override toString(): string {
-        return `Rectangle with location ${this.location.toString}, radius ${this.size.toString} and style ${super.toString()}]`
-    }
+   public override toString(): string {
+    return `Rectangle with location ${this.location.toString()}, size ${this.size.toString()} and style ${super.toString()}`
+}
+
 
 }
 
@@ -194,7 +195,11 @@ export class Circle extends BaseShape {
         ctx.fill()
     }
 
+    /**
+     * 
+     * @returns Circle with center
+     */
     public override toString(): string {
-        return `Circle with center ${this.center.toString}, radius ${this.radius} and style ${super.toString()}]`
+        return `Circle with center ${this.center.toString()}, radius ${this.radius} and style ${super.toString()}]`
     }
 }

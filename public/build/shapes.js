@@ -97,7 +97,7 @@ export class Rectangle extends BaseShape {
         ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height);
     }
     toString() {
-        return `Rectangle with location ${this.location.toString}, radius ${this.size.toString} and style ${super.toString()}]`;
+        return `Rectangle with location ${this.location.toString()}, size ${this.size.toString()} and style ${super.toString()}`;
     }
 }
 export class Circle extends BaseShape {
@@ -123,8 +123,12 @@ export class Circle extends BaseShape {
         ctx.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);
         ctx.fill();
     }
+    /**
+     *
+     * @returns Circle with center
+     */
     toString() {
-        return `Circle with center ${this.center.toString}, radius ${this.radius} and style ${super.toString()}]`;
+        return `Circle with center ${this.center.toString()}, radius ${this.radius} and style ${super.toString()}]`;
     }
 }
 //# sourceMappingURL=shapes.js.map
