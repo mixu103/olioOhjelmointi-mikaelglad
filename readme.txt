@@ -9,6 +9,9 @@ TS
 tsc
 tsc -w
 
+TODO:
+
+- Päivitä UML kaavio 2.13 mukaan.
 
 3.10 on viimeinen tehtävä
 
