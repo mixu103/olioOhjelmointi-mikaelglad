@@ -17,7 +17,6 @@ export class PaletteComponent {
             const button = document.createElement("button");
             button.innerHTML = action.name;
             button.addEventListener("click", e => {
-                console.log("Click on", action.name);
                 this._selectedAction = action;
             });
             paletteElement.appendChild(button);
