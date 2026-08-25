@@ -2,8 +2,6 @@ import { CanvasAction } from "./shape-actions";
 
 export class SelectedActionChangedEvent {
 
-
-
     private _action: CanvasAction
 
     constructor(action: CanvasAction) {
@@ -22,3 +20,16 @@ export interface PaletteListener {
 
 }
 
+export class PaletteComponent {
+
+    private _listeners: PaletteListener[]
+
+    private _selectedAction: CanvasAction
+
+    constructor(paletteElement: HTMLElement, action: CanvasAction[]){
+        console.log("Actions", action)
+    }
+
+    
+
+}
