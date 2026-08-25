@@ -27,10 +27,10 @@ export class AddShapeAction extends BaseAction {
         this._shapeClass = shapeClass;
     }
     get name() {
-        return this._shapeClass.name;
+        return `Add $(this._shapeClass.name)`;
     }
     get status() {
-        return 'Click to add a ${this.name}';
+        return `Click to add a ${this._shapeClass.name}`;
     }
     onClick(e) {
         // TODO: Implement this 

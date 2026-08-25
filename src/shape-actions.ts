@@ -1,6 +1,8 @@
 /**
  * Defines the action protocol used by various components.
  */
+import type { ShapeViewer } from "./shape-viewer.js"
+
 export interface CanvasAction {
 
     /**
@@ -72,18 +74,18 @@ export class AddShapeAction extends BaseAction {
 
     private _shapeClass: any
 
-    public constructor(shapeClass: any, shapeViewer) {
+    public constructor(shapeClass: any, shapeViewer: ShapeViewer) {
         super(shapeViewer)
 
         this._shapeClass = shapeClass
     }
 
     public get name() {
-        return this._shapeClass.name
+        return `Add $(this._shapeClass.name)`
     }
 
     public get status() {
-        return 'Click to add a ${this.name}'
+        return `Click to add a ${this._shapeClass.name}`
     }
 
     public onClick(e: MouseEvent): void {

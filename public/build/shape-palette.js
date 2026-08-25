@@ -7,8 +7,12 @@ export class SelectedActionChangedEvent {
     }
 }
 export class PaletteComponent {
-    constructor(paletteElement, action) {
-        console.log("Actions", action);
+    constructor(paletteElement, actions) {
+        this._listeners = [];
+        paletteElement.classList.add("v-box");
+        actions.forEach(action => {
+            paletteElement.innerHTML += `<button id="${action.id}">${action.name}</button>`;
+        });
     }
 }
 //# sourceMappingURL=shape-palette.js.map

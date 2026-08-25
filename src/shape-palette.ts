@@ -22,12 +22,16 @@ export interface PaletteListener {
 
 export class PaletteComponent {
 
-    private _listeners: PaletteListener[]
+    private _listeners: PaletteListener[] = []
 
-    private _selectedAction: CanvasAction
+    private _selectedAction!: CanvasAction
 
-    constructor(paletteElement: HTMLElement, action: CanvasAction[]){
-        console.log("Actions", action)
+    constructor(paletteElement: HTMLElement, actions: CanvasAction[]){
+        paletteElement.classList.add("v-box")
+
+        actions.forEach(action => {
+            paletteElement.innerHTML += `<button id="${action.id}">${action.name}</button>`
+        })
     }
 
     
