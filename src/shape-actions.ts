@@ -67,7 +67,7 @@ export class SelectAction extends BaseAction {
 
 
 
-//*
+
 export class AddShapeAction extends BaseAction {
 
     private _shapeClass: any
@@ -93,4 +93,3 @@ export class AddShapeAction extends BaseAction {
 
 
 }
-//*/
