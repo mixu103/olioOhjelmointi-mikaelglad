@@ -9,12 +9,13 @@ export class CanvasController implements PaletteListener {
         this._currentAction = initialAction
 
         canvas.addEventListener("click", (e:PointerEvent) => {
-            console.log("CANVAS CLICKED")
+            this._currentAction.onClick(e)
         })
     }
 
-    selectedActionChanged(e: SelectedActionChangedEvent): void {
-        throw new Error("Method not implemented.");
+    public selectedActionChanged(e: SelectedActionChangedEvent): void {
+        console.log("CanvasController action changed", e)
+        this._currentAction = e.action
     }
 
     

@@ -18,7 +18,7 @@ export class SelectAction extends BaseAction {
     }
     onClick(e) {
         // TODO: Implement this 
-        // throw new Error("Implement this method later")
+        console.log("Select action performed");
     }
 }
 export class AddShapeAction extends BaseAction {
@@ -34,7 +34,7 @@ export class AddShapeAction extends BaseAction {
     }
     onClick(e) {
         // TODO: Implement this 
-        // throw new Error("Implement this method later")
+        console.log("Add ${this.shapeClass.name} action performed");
     }
 }
 //# sourceMappingURL=shape-actions.js.map

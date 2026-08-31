@@ -28,13 +28,13 @@ export class ShapeEditor implements PaletteListener{
         this._statusBar = new StatusBar(document.getElementById("status") as HTMLElement)
 
         this._canvasController = new CanvasController(this._palette.selectedAction, canvas)
-        
+
         this._palette.addPaletteListener(this._statusBar)
         this._palette.addPaletteListener(this)
+        this._palette.addPaletteListener(this._canvasController)
     }
 
     selectedActionChanged(e: SelectedActionChangedEvent): void {
         console.log("ShapeEditor ", e.action.name)
     }
 }
-

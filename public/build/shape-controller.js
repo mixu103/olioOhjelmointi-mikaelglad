@@ -2,11 +2,12 @@ export class CanvasController {
     constructor(initialAction, canvas) {
         this._currentAction = initialAction;
         canvas.addEventListener("click", (e) => {
-            console.log("CANVAS CLICKED");
+            this._currentAction.onClick(e);
         });
     }
     selectedActionChanged(e) {
-        throw new Error("Method not implemented.");
+        console.log("CanvasController action changed", e);
+        this._currentAction = e.action;
     }
 }
 //# sourceMappingURL=shape-controller.js.map

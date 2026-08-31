@@ -17,6 +17,7 @@ export class ShapeEditor {
         this._canvasController = new CanvasController(this._palette.selectedAction, canvas);
         this._palette.addPaletteListener(this._statusBar);
         this._palette.addPaletteListener(this);
+        this._palette.addPaletteListener(this._canvasController);
     }
     selectedActionChanged(e) {
         console.log("ShapeEditor ", e.action.name);

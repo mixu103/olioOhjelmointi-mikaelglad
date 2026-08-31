@@ -62,7 +62,7 @@ export class SelectAction extends BaseAction {
 
     public onClick(e: MouseEvent): void {
         // TODO: Implement this 
-        // throw new Error("Implement this method later")
+        console.log("Select action performed")
     }
 
 }
@@ -90,7 +90,7 @@ export class AddShapeAction extends BaseAction {
 
     public onClick(e: MouseEvent): void {
         // TODO: Implement this 
-        // throw new Error("Implement this method later")
+        console.log("Add ${this.shapeClass.name} action performed")
     }
 
 

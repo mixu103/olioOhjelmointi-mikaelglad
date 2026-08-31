@@ -28,31 +28,22 @@ export class PaletteComponent {
 
     constructor(paletteElement: HTMLElement, actions: CanvasAction[]){
 
-
         this._listeners = []
         this._selectedAction = actions[0]
 
         paletteElement.classList.add("v-box")
 
-        let html = ""
-
         actions.forEach(action => {
             const button = document.createElement("button")
             button.innerHTML = action.name
+
             button.addEventListener("click", e => {
-                this._selectedAction = action
-                
+                console.log("Click on ", action.name)
+                this._selectedAction = action                
             })
             paletteElement.appendChild(button)
         })
 
-        paletteElement.innerHTML = html 
-
-        actions.forEach(action => {
-            document.getElementById(action.id)?.addEventListener("click", e => {
-                console.log("Click on ", action.name)
-            })
-        })
 
     }
 
