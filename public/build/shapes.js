@@ -53,6 +53,12 @@ class Size {
 }
 export class BaseShape {
     /**
+     * Functionality for shapes
+     */
+    static init(x, y) {
+        throw Error("Implement this method");
+    }
+    /**
      *
      * @param style style used to draw shape
      */
@@ -74,6 +80,12 @@ export class BaseShape {
     }
 }
 export class Rectangle extends BaseShape {
+    /**
+     *  rectangle draw on canvas
+     */
+    static initWithXY(x, y) {
+        return new Rectangle(x, y, 100, 100, "gray");
+    }
     /**
      *
      * @param x x coordinate
@@ -120,6 +132,12 @@ export class Square extends Rectangle {
     }
 }
 export class Circle extends BaseShape {
+    /**
+     * Circle draw on canvas
+     */
+    static initWithXY(x, y) {
+        return new Circle(x, y, 100, "gray");
+    }
     /**
      *
      * @param x x coordinate

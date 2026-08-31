@@ -54,6 +54,7 @@ class Size {
         this._height = height
     }
 
+
     /**
      * Gets the width
      */
@@ -77,7 +78,7 @@ class Size {
 }
 
 export interface Shape {
-    
+
     /**
      * Draws shape
      * @param ctx canvasrendering context used for draw
@@ -90,10 +91,16 @@ export interface Shape {
     toString(): string
 }
 
+
 export abstract class BaseShape implements Shape {
 /**
  * Functionality for shapes
  */
+
+    public static init(x: number, y: number): Shape {
+        throw Error("Implement this method")
+    }
+
     private _style: string
 
     /**
@@ -125,10 +132,18 @@ export abstract class BaseShape implements Shape {
 
 
 
+
+
 export class Rectangle extends BaseShape {
 /**
  *  rectangle draw on canvas
  */
+
+    public static initWithXY(x: number, y: number): Shape {
+        return new Rectangle(x, y, 100, 100, "gray")
+    }
+
+
     private location: Point
 
     private size: Size
@@ -191,6 +206,11 @@ export class Circle extends BaseShape {
 /**
  * Circle draw on canvas
  */
+
+    public static initWithXY(x: number, y: number): Shape {
+        return new Circle(x, y, 100, "gray")
+    }
+
     private center: Point
 
     private radius: number

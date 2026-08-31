@@ -33,8 +33,9 @@ export class AddShapeAction extends BaseAction {
         return `Click to add a ${this._shapeClass.name}`;
     }
     onClick(e) {
-        // TODO: Implement this 
         console.log("Add ${this.shapeClass.name} action performed");
+        const shape = this._shapeClass.initWithXY(e.offsetX, e.offsetY);
+        this.shapeViewer.addShape(shape);
     }
 }
 //# sourceMappingURL=shape-actions.js.map
