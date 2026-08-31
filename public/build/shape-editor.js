@@ -3,6 +3,7 @@ import { PaletteComponent } from "./shape-palette.js";
 import { ShapeViewerImpl } from "./shape-viewer.js";
 import { Circle, Rectangle } from "./shapes.js";
 import { StatusBar } from "./shape-status.js";
+import { CanvasController } from "./shape-controller.js";
 export class ShapeEditor {
     constructor() {
         const canvas = document.getElementById("canvas");
@@ -13,6 +14,7 @@ export class ShapeEditor {
             new AddShapeAction(Circle, this._shapeView),
         ]);
         this._statusBar = new StatusBar(document.getElementById("status"));
+        this._canvasController = new CanvasController(this._palette.selectedAction, canvas);
         this._palette.addPaletteListener(this._statusBar);
         this._palette.addPaletteListener(this);
     }

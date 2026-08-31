@@ -3,6 +3,7 @@ import { PaletteComponent, PaletteListener, SelectedActionChangedEvent } from ".
 import { ShapeViewer, ShapeViewerImpl } from "./shape-viewer.js"
 import { Circle, Rectangle } from "./shapes.js"
 import { StatusBar } from "./shape-status.js"
+import { CanvasController } from "./shape-controller.js"
 
 export class ShapeEditor implements PaletteListener{
     private _shapeView: ShapeViewer
@@ -10,6 +11,8 @@ export class ShapeEditor implements PaletteListener{
     private _palette: PaletteComponent
 
     private _statusBar: StatusBar
+
+    private _canvasController: CanvasController
 
     constructor() {
         const canvas = document.getElementById("canvas") as HTMLCanvasElement
@@ -24,6 +27,8 @@ export class ShapeEditor implements PaletteListener{
 
         this._statusBar = new StatusBar(document.getElementById("status") as HTMLElement)
 
+        this._canvasController = new CanvasController(this._palette.selectedAction, canvas)
+        
         this._palette.addPaletteListener(this._statusBar)
         this._palette.addPaletteListener(this)
     }
