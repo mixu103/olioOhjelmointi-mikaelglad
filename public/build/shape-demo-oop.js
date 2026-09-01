@@ -9,7 +9,6 @@ const rectangle2 = new Rectangle(xCenter - 50, yCenter - 25, 200, 100, "green");
 rectangle2.draw(ctx);
 const rectangle3 = new Rectangle(xCenter + 150, yCenter + 200, 50, 100, "purple");
 rectangle3.draw(ctx);
-// ympyrä jutut
 const circle = new Circle(150, 150, 100, "blue");
 circle.draw(ctx);
 const circle2 = new Circle(400, 400, 50, "orange");

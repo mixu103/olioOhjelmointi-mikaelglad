@@ -1,6 +1,7 @@
 /**
  * Defines the action protocol used by various components.
  */
+import type { Shape } from "./shapes.js"
 import type { ShapeViewer } from "./shape-viewer.js"
 
 export interface CanvasAction {
@@ -61,9 +62,15 @@ export class SelectAction extends BaseAction {
     }
 
     public onClick(e: MouseEvent): void {
-        // TODO: Implement this 
         console.log("Select action performed")
-        e.offsetX, e.offsetY
+
+        const shape: Shape | null = this.shapeViewer.getShapeAt(e.offsetX, e.offsetY)
+
+        if (shape) {
+            this.shapeViewer.selectShape(shape)
+        } else {
+            this.shapeViewer.clearSelection()
+        }
     }
 
 }
@@ -93,7 +100,6 @@ export class AddShapeAction extends BaseAction {
         console.log(`Add ${this._shapeClass.name} action performed`)
         const shape = this._shapeClass.initWithXY(e.offsetX, e.offsetY)
         this.shapeViewer.addShape(shape)
-        a.offsetX = e.offsetX
     }
 
 

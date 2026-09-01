@@ -81,6 +81,9 @@ export class BaseShape {
         ctx.fill(this.path);
     }
     drawSelectionBorder(ctx) {
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 3;
+        ctx.stroke(this.path);
     }
     /**
      *
@@ -162,13 +165,10 @@ export class Circle extends BaseShape {
     }
     /**
      *
-     * @param ctx ctx used to draw to canvas
+     * @param path This is updated instead of using draw
      */
-    draw(ctx) {
-        ctx.fillStyle = this.style;
-        ctx.beginPath();
-        ctx.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);
-        ctx.fill();
+    setupPath(path) {
+        path.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI);
     }
     /**
      *

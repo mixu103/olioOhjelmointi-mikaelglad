@@ -1,4 +1,4 @@
-import { Rectangle, Circle } from "./shapes.js"
+import { Rectangle, Circle, Shape } from "./shapes.js"
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement
 const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
@@ -6,16 +6,15 @@ const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 const xCenter: number = canvas.width / 2
 const yCenter: number = canvas.height / 2
 
-const rectangle: Shape = new Rectangle(xCenter - 200, yCenter - 100, 400, 200,  "red")
+const rectangle: Shape = new Rectangle(xCenter - 200, yCenter - 100, 400, 200, "red")
 rectangle.draw(ctx)
 
-const rectangle2: Shapes = new Rectangle(xCenter - 50, yCenter - 25, 200, 100,  "green")
+const rectangle2: Shape = new Rectangle(xCenter - 50, yCenter - 25, 200, 100, "green")
 rectangle2.draw(ctx)
 
-const rectangle3: Shape = new Rectangle(xCenter + 150, yCenter + 200, 50, 100,  "purple")
+const rectangle3: Shape = new Rectangle(xCenter + 150, yCenter + 200, 50, 100, "purple")
 rectangle3.draw(ctx)
 
-// ympyrä jutut
 const circle: Circle = new Circle(150, 150, 100, "blue")
 circle.draw(ctx)
 

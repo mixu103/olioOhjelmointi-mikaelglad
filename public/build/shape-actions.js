@@ -17,9 +17,14 @@ export class SelectAction extends BaseAction {
         return "Click an shape to select it.";
     }
     onClick(e) {
-        // TODO: Implement this 
         console.log("Select action performed");
-        e.offsetX, e.offsetY;
+        const shape = this.shapeViewer.getShapeAt(e.offsetX, e.offsetY);
+        if (shape) {
+            this.shapeViewer.selectShape(shape);
+        }
+        else {
+            this.shapeViewer.clearSelection();
+        }
     }
 }
 export class AddShapeAction extends BaseAction {
@@ -37,7 +42,6 @@ export class AddShapeAction extends BaseAction {
         console.log(`Add ${this._shapeClass.name} action performed`);
         const shape = this._shapeClass.initWithXY(e.offsetX, e.offsetY);
         this.shapeViewer.addShape(shape);
-        a.offsetX = e.offsetX;
     }
 }
 //# sourceMappingURL=shape-actions.js.map

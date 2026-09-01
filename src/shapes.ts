@@ -79,7 +79,7 @@ class Size {
 
 export interface Shape {
 
-    readonly path:
+    readonly path: Path2D
 
     /**
      * Draws shape
@@ -133,15 +133,15 @@ export abstract class BaseShape implements Shape {
 
     protected abstract setupPath(path: Path2D): void
 
-    
-
     public draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.style
         ctx.fill(this.path)
     }
 
     public drawSelectionBorder(ctx: CanvasRenderingContext2D): void {
-    
+        ctx.strokeStyle = "black"
+        ctx.lineWidth = 3
+        ctx.stroke(this.path)
     }
 
     /**
@@ -237,7 +237,7 @@ export class Circle extends BaseShape {
 
     private center: Point
 
-    private radius: number
+    public radius: number
 
     /**
      * 
@@ -252,15 +252,13 @@ export class Circle extends BaseShape {
         this.radius = radius
     }
 
+
     /**
      * 
-     * @param ctx ctx used to draw to canvas
+     * @param path This is updated instead of using draw
      */
-    public override draw(ctx: CanvasRenderingContext2D) {
-        ctx.fillStyle = this.style
-        ctx.beginPath()
-        ctx.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI)
-        ctx.fill()
+    protected setupPath(path: Path2D): void {
+        path.arc(this.center.x, this.center.y, this.radius, 0, 2 * Math.PI)
     }
 
     /**

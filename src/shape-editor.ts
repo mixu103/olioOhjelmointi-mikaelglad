@@ -5,7 +5,7 @@ import { Circle, Rectangle } from "./shapes.js"
 import { StatusBar } from "./shape-status.js"
 import { CanvasController } from "./shape-controller.js"
 
-export class ShapeEditor implements PaletteListener{
+export class ShapeEditor implements PaletteListener {
     private _shapeView: ShapeViewer
 
     private _palette: PaletteComponent

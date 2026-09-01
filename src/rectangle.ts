@@ -1,7 +1,9 @@
-export{}
-
 const canvas: HTMLCanvasElement = document.getElementById("canvas") as HTMLCanvasElement
-const ctx: CanvasRenderingContext2D = canvas.getContext("2d")
+const ctx = canvas.getContext("2d")
+
+if (!ctx) {
+    throw new Error("Canvas context is not available")
+}
 
 const xCenter: number = canvas.width / 2
 const yCenter: number = canvas.height / 2

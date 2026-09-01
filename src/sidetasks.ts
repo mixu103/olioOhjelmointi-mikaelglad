@@ -5,12 +5,12 @@ let b = a
 b = 8
 console.log(a, b) // prints 7 8
 
-const c = { course: "TS" }
-const d = c
-d.course = "JS"
-console.log(c, d) // prints {course: 'JS'} {course: 'JS'}
+const c1 = { course: "TS" }
+const d1 = c1
+d1.course = "JS"
+console.log(c1, d1) // prints {course: 'JS'} {course: 'JS'}
 
-const c = { course: "TS" }
-let d = c
-d = { course: "JS" }
-console.log(c, d) // prints {course: 'TS'} {course: 'JS'}
+const c2 = { course: "TS" }
+let d2 = c2
+d2 = { course: "JS" }
+console.log(c2, d2) // prints {course: 'TS'} {course: 'JS'}
