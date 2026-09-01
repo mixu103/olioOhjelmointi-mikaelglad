@@ -1,4 +1,17 @@
+export class ShapeSelectionEvent {
+    constructor(shape) {
+        this._shape = shape;
+    }
+    get shape() {
+        return this._shape;
+    }
+}
 export class ShapeViewerImpl {
+    addSelectionListener(listener) {
+        this._selectionListeners.push(listener);
+    }
+    fireSelectionEvent(e) {
+    }
     /**
      * Creates new ShapeViewerImpl for the canvas
      */
@@ -8,9 +21,11 @@ export class ShapeViewerImpl {
         if (!context) {
             throw new Error("Canvas context is not available");
         }
-        this.ctx = context;
+        this._ctx = context;
         this._shapes = [];
         this._selectedShape = null;
+        this._listeners = [];
+        this._selectionListeners = [];
     }
     /**
      * Adds multiple shapes
@@ -30,7 +45,7 @@ export class ShapeViewerImpl {
     }
     getShapeAt(x, y) {
         for (const shape of this._shapes) {
-            if (this.ctx.isPointInPath(shape.path, x, y)) {
+            if (this._ctx.isPointInPath(shape.path, x, y)) {
                 return shape;
             }
         }
@@ -43,18 +58,24 @@ export class ShapeViewerImpl {
     clearSelection() {
         this.selectShape(null);
     }
+    addShapeSelectionListener(listener) {
+        this._listeners.push(listener);
+    }
+    fireShapeSelected(shape) {
+        this._listeners.forEach(listener => listener.shapeSelected(shape));
+    }
     toString() {
         return `ShapeViewer with ${this._shapes.length} shapes`;
     }
     draw() {
-        this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
+        this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
         this._shapes.forEach(shape => {
-            this.ctx.save();
-            shape.draw(this.ctx);
+            this._ctx.save();
+            shape.draw(this._ctx);
             if (shape === this._selectedShape) {
-                shape.drawSelectionBorder(this.ctx);
+                shape.drawSelectionBorder(this._ctx);
             }
-            this.ctx.restore();
+            this._ctx.restore();
         });
     }
 }

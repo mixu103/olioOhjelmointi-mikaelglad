@@ -1,4 +1,22 @@
-import { Shape } from "./shapes.js";
+import { Shape } from "./shapes.js"
+
+export class ShapeSelectionEvent {
+
+    private _shape: Shape
+
+    constructor(shape: Shape) {
+        this._shape = shape
+    }
+
+    public get shape(): Shape {
+        return this._shape
+    }
+}
+
+export interface ShapeSelectionListener {
+
+    shapeSelected(e: ShapeSelectionEvent): void
+}
 
 /**
  * viewer that displays and manages shapes
@@ -26,11 +44,24 @@ export class ShapeViewerImpl implements ShapeViewer {
 
     private _canvas: HTMLCanvasElement
 
-    private ctx: CanvasRenderingContext2D
+    private _ctx: CanvasRenderingContext2D
 
     private _shapes: Shape[]
 
     private _selectedShape: Shape | null
+
+    private _selectionListeners: ShapeSelectionListener[]
+
+    private _listeners: ShapeSelectionListener[]
+
+
+    public addSelectionListener(listener: ShapeSelectionListener): void {
+        this._selectionListeners.push(listener)
+    }
+
+    private fireSelectionEvent(e: ShapeSelectionEvent): void {
+        
+    }
 
     /**
      * Creates new ShapeViewerImpl for the canvas
@@ -41,9 +72,11 @@ export class ShapeViewerImpl implements ShapeViewer {
         if (!context) {
             throw new Error("Canvas context is not available")
         }
-        this.ctx = context
+        this._ctx = context
         this._shapes = []
         this._selectedShape = null
+        this._listeners = []
+        this._selectionListeners = []
     }
 
     /**
@@ -66,7 +99,7 @@ export class ShapeViewerImpl implements ShapeViewer {
 
     public getShapeAt(x: number, y: number): Shape | null {
         for (const shape of this._shapes) {
-            if (this.ctx.isPointInPath(shape.path, x, y)) {
+            if (this._ctx.isPointInPath(shape.path, x, y)) {
                 return shape
             }
         }
@@ -82,22 +115,30 @@ export class ShapeViewerImpl implements ShapeViewer {
         this.selectShape(null)
     }
 
+    public addShapeSelectionListener(listener: ShapeSelectionListener): void {
+        this._listeners.push(listener)
+    }
+
+    private fireShapeSelected(shape: Shape): void {
+        this._listeners.forEach(listener => listener.shapeSelected(shape))
+    }
+
     public toString(): string {
         return `ShapeViewer with ${this._shapes.length} shapes`
     }
 
     private draw(): void {
-        this.ctx.clearRect(0, 0, this._canvas.width, this._canvas.height)
+        this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height)
 
         this._shapes.forEach(shape => {
-            this.ctx.save()
-            shape.draw(this.ctx)
+            this._ctx.save()
+            shape.draw(this._ctx)
 
             if (shape === this._selectedShape) {
-                shape.drawSelectionBorder(this.ctx)
+                shape.drawSelectionBorder(this._ctx)
             }
 
-            this.ctx.restore()
+            this._ctx.restore()
         })
     }
 }
