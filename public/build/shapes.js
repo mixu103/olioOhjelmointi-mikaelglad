@@ -71,6 +71,17 @@ export class BaseShape {
     set style(style) {
         this._style = style;
     }
+    get path() {
+        const path = new Path2D();
+        this.setupPath(path);
+        return path;
+    }
+    draw(ctx) {
+        ctx.fillStyle = this.style;
+        ctx.fill(this.path);
+    }
+    drawSelectionBorder(ctx) {
+    }
     /**
      *
      * @returns style of the shape
@@ -104,9 +115,8 @@ export class Rectangle extends BaseShape {
      *
      * @param ctx canvas rendering used to draw
      */
-    draw(ctx) {
-        ctx.fillStyle = this.style;
-        ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height);
+    setupPath(path) {
+        path.rect(this.location.x, this.location.y, this.size.width, this.size.height);
     }
     toString() {
         return `Rectangle with location ${this.location.toString()}, size ${this.size.toString()} and style ${super.toString()}`;

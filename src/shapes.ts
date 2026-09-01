@@ -79,11 +79,15 @@ class Size {
 
 export interface Shape {
 
+    readonly path:
+
     /**
      * Draws shape
      * @param ctx canvasrendering context used for draw
      */
     draw(ctx: CanvasRenderingContext2D): void
+
+    drawSelectionBorder(ctx: CanvasRenderingContext2D): void
 
     /**
      * String represantion
@@ -119,7 +123,26 @@ export abstract class BaseShape implements Shape {
         this._style = style
     }
 
-    public abstract draw(ctx: CanvasRenderingContext2D): void
+    public get path(): Path2D {
+        const path = new Path2D()
+
+        this.setupPath(path)
+
+        return path
+    }
+
+    protected abstract setupPath(path: Path2D): void
+
+    
+
+    public draw(ctx: CanvasRenderingContext2D): void {
+        ctx.fillStyle = this.style
+        ctx.fill(this.path)
+    }
+
+    public drawSelectionBorder(ctx: CanvasRenderingContext2D): void {
+    
+    }
 
     /**
      * 
@@ -166,9 +189,10 @@ export class Rectangle extends BaseShape {
      * 
      * @param ctx canvas rendering used to draw
      */
-    public override draw(ctx: CanvasRenderingContext2D): void {
-        ctx.fillStyle = this.style
-        ctx.fillRect(this.location.x, this.location.y, this.size.width, this.size.height)
+
+
+    protected setupPath(path: Path2D): void {
+        path.rect(this.location.x, this.location.y, this.size.width, this.size.height)
     }
 
    public override toString(): string {
