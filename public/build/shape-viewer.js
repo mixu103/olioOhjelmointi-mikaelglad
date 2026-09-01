@@ -11,6 +11,7 @@ export class ShapeViewerImpl {
         this._selectionListeners.push(listener);
     }
     fireSelectionEvent(e) {
+        this._selectionListeners.forEach(listener => listener.shapeSelected(e));
     }
     /**
      * Creates new ShapeViewerImpl for the canvas
@@ -52,8 +53,11 @@ export class ShapeViewerImpl {
         return null;
     }
     selectShape(shape) {
-        this._selectedShape = shape;
-        this.draw();
+        if (this._selectedShape != shape) {
+            this._selectedShape = shape;
+            this.draw();
+            this.fireSelectionEvent(new ShapeSelectionEvent(this._selectedShape));
+        }
     }
     clearSelection() {
         this.selectShape(null);

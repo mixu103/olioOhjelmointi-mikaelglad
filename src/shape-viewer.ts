@@ -60,7 +60,7 @@ export class ShapeViewerImpl implements ShapeViewer {
     }
 
     private fireSelectionEvent(e: ShapeSelectionEvent): void {
-        
+        this._selectionListeners.forEach(listener => listener.shapeSelected(e))
     }
 
     /**
@@ -107,8 +107,13 @@ export class ShapeViewerImpl implements ShapeViewer {
     }
 
     public selectShape(shape: Shape | null): void {
-        this._selectedShape = shape
-        this.draw()
+        if (this._selectedShape != shape) {
+            this._selectedShape = shape
+
+            this.draw()
+
+            this.fireSelectionEvent(new ShapeSelectionEvent(this._selectedShape))
+        }
     }
 
     public clearSelection(): void {

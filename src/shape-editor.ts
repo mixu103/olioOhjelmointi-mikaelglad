@@ -4,6 +4,7 @@ import { ShapeViewer, ShapeViewerImpl } from "./shape-viewer.js"
 import { Circle, Rectangle } from "./shapes.js"
 import { StatusBar } from "./shape-status.js"
 import { CanvasController } from "./shape-controller.js"
+import { PropertiesComponent } from "./shape-properties.js"
 
 export class ShapeEditor implements PaletteListener {
     private _shapeView: ShapeViewer
@@ -24,6 +25,10 @@ export class ShapeEditor implements PaletteListener {
             new AddShapeAction(Rectangle, this._shapeView),
             new AddShapeAction(Circle, this._shapeView),
         ])
+
+        this._properties = new PropertiesComponent(document.getElementById("properties") as HTMLElement)
+
+        this._shapeView.addShapeSelectionListener(this._properties)
 
         this._statusBar = new StatusBar(document.getElementById("status") as HTMLElement)
 
