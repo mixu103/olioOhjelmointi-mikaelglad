@@ -22,6 +22,12 @@ export class ShapeViewerImpl {
         this.shapes.push(shape);
         this.draw();
     }
+    getShapeAt(x, y) {
+    }
+    selectShape(shape) {
+    }
+    clearSelection() {
+    }
     draw() {
         this.shapes.forEach(shape => shape.draw(this.ctx));
     }

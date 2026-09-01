@@ -208,7 +208,7 @@ export class Circle extends BaseShape {
  */
 
     public static initWithXY(x: number, y: number): Shape {
-        return new Circle(x, y, 100, "gray")
+        return new Circle(x, y, 50, "gray")
     }
 
     private center: Point

@@ -19,6 +19,7 @@ export class SelectAction extends BaseAction {
     onClick(e) {
         // TODO: Implement this 
         console.log("Select action performed");
+        e.offsetX, e.offsetY;
     }
 }
 export class AddShapeAction extends BaseAction {
@@ -27,15 +28,16 @@ export class AddShapeAction extends BaseAction {
         this._shapeClass = shapeClass;
     }
     get name() {
-        return `Add $(this._shapeClass.name)`;
+        return `Add ${this._shapeClass.name}`;
     }
     get status() {
         return `Click to add a ${this._shapeClass.name}`;
     }
     onClick(e) {
-        console.log("Add ${this.shapeClass.name} action performed");
+        console.log(`Add ${this._shapeClass.name} action performed`);
         const shape = this._shapeClass.initWithXY(e.offsetX, e.offsetY);
         this.shapeViewer.addShape(shape);
+        a.offsetX = e.offsetX;
     }
 }
 //# sourceMappingURL=shape-actions.js.map

@@ -14,19 +14,22 @@ export class PaletteComponent {
         paletteElement.classList.add("v-box");
         actions.forEach(action => {
             const button = document.createElement("button");
-            button.innerHTML = action.name;
-            button.addEventListener("click", e => {
+            button.type = "button";
+            button.textContent = action.name;
+            button.addEventListener("click", () => {
                 console.log("Click on ", action.name);
-                this._selectedAction = action;
+                this.selectedAction = action;
             });
             paletteElement.appendChild(button);
         });
+        this.fireSelectedActionChangedEvent(new SelectedActionChangedEvent(this._selectedAction));
     }
     get selectedAction() {
         return this._selectedAction;
     }
-    addPaletteListener(_listener) {
-        this._listeners.push(_listener);
+    addPaletteListener(listener) {
+        this._listeners.push(listener);
+        listener.selectedActionChanged(new SelectedActionChangedEvent(this._selectedAction));
     }
     fireSelectedActionChangedEvent(e) {
         this._listeners.forEach(l => l.selectedActionChanged(e));

@@ -63,6 +63,7 @@ export class SelectAction extends BaseAction {
     public onClick(e: MouseEvent): void {
         // TODO: Implement this 
         console.log("Select action performed")
+        e.offsetX, e.offsetY
     }
 
 }
@@ -81,7 +82,7 @@ export class AddShapeAction extends BaseAction {
     }
 
     public get name() {
-        return `Add $(this._shapeClass.name)`
+        return `Add ${this._shapeClass.name}`
     }
 
     public get status() {
@@ -89,9 +90,10 @@ export class AddShapeAction extends BaseAction {
     }
 
     public onClick(e: MouseEvent): void {
-        console.log("Add ${this.shapeClass.name} action performed")
+        console.log(`Add ${this._shapeClass.name} action performed`)
         const shape = this._shapeClass.initWithXY(e.offsetX, e.offsetY)
         this.shapeViewer.addShape(shape)
+        a.offsetX = e.offsetX
     }
 
 

@@ -136,7 +136,7 @@ export class Circle extends BaseShape {
      * Circle draw on canvas
      */
     static initWithXY(x, y) {
-        return new Circle(x, y, 100, "gray");
+        return new Circle(x, y, 50, "gray");
     }
     /**
      *

@@ -22,6 +22,8 @@ export class ShapeViewerImpl implements ShapeViewer {
 
     private shapes: Shape[]
 
+    private _selectedShape: Shape
+
     /**
      * Creates new ShapeViewerImpl for the canvas
      */
@@ -29,6 +31,7 @@ export class ShapeViewerImpl implements ShapeViewer {
         this.ctx = canvasElement.getContext("2d")!
         this.shapes = []
     }
+    
 
     /**
      * Adds multiple shapes
@@ -46,6 +49,19 @@ export class ShapeViewerImpl implements ShapeViewer {
     public addShape(shape: Shape): void {
         this.shapes.push(shape)
         this.draw()
+    }
+
+    public getShapeAt(x: number, y: number): Shape {
+
+    }
+
+
+    public selectShape(shape: Shape): void {
+
+    }
+
+    public clearSelection(): void {
+
     }
 
     private draw(): void {

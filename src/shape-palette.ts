@@ -35,16 +35,17 @@ export class PaletteComponent {
 
         actions.forEach(action => {
             const button = document.createElement("button")
-            button.innerHTML = action.name
+            button.type = "button"
+            button.textContent = action.name
 
-            button.addEventListener("click", e => {
+            button.addEventListener("click", () => {
                 console.log("Click on ", action.name)
-                this._selectedAction = action                
+                this.selectedAction = action
             })
             paletteElement.appendChild(button)
         })
 
-
+        this.fireSelectedActionChangedEvent(new SelectedActionChangedEvent(this._selectedAction))
     }
 
 
@@ -52,8 +53,9 @@ export class PaletteComponent {
         return this._selectedAction
     }
 
-    public addPaletteListener(_listener: PaletteListener) {
-        this._listeners.push(_listener)
+    public addPaletteListener(listener: PaletteListener) {
+        this._listeners.push(listener)
+        listener.selectedActionChanged(new SelectedActionChangedEvent(this._selectedAction))
     }
 
 

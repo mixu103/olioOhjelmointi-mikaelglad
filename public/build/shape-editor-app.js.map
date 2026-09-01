@@ -1,1 +1,1 @@
-{"version":3,"file":"shape-editor-app.js","sourceRoot":"","sources":["../../src/shape-editor-app.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,mBAAmB,CAAA;AAE/C,IAAI,WAAW,EAAE,CAAA"}
+{"version":3,"file":"shape-editor-app.js","sourceRoot":"","sources":["../../src/shape-editor-app.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,WAAW,EAAE,MAAM,mBAAmB,CAAA;AAE/C,QAAQ,CAAC,gBAAgB,CAAC,kBAAkB,EAAE,GAAG,EAAE;IAC/C,IAAI,WAAW,EAAE,CAAA;AACrB,CAAC,CAAC,CAAA"}
