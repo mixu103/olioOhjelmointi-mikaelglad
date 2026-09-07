@@ -1,1 +1,1 @@
-{"version":3,"file":"shape-properties.js","sourceRoot":"","sources":["../../src/shape-properties.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,mBAAmB;IAE5B,YAAmB,iBAA8B;IAEjD,CAAC;IAED,aAAa,CAAC,CAAsB;QAChC,OAAO,CAAC,GAAG,CAAC,8BAA8B,EAAE,CAAC,CAAC,KAAK,CAAC,CAAA;IACxD,CAAC;CAEJ"}
+{"version":3,"file":"shape-properties.js","sourceRoot":"","sources":["../../src/shape-properties.ts"],"names":[],"mappings":"AAGA,MAAM,OAAO,mBAAmB;IAE5B,YAAmB,iBAA8B;IAEjD,CAAC;IAEM,aAAa,CAAC,CAAsB;QACvC,OAAO,CAAC,GAAG,CAAC,+BAA+B,EAAE,CAAC,CAAC,KAAK,CAAC,CAAA;IACzD,CAAC;CAKJ"}

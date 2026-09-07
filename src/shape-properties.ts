@@ -1,4 +1,4 @@
-import { ShapeSelectionListener } from "./shape-viewer.js"
+import { ShapeSelectionEvent, ShapeSelectionListener } from "./shape-viewer.js"
 
 
 export class PropertiesComponent implements ShapeSelectionListener {
@@ -7,8 +7,11 @@ export class PropertiesComponent implements ShapeSelectionListener {
 
     }
 
-    shapeSelected(e: ShapeSelectionEvent): void {
-        console.log("Shape selected in properties", e.shape)
+    public shapeSelected(e: ShapeSelectionEvent): void {
+        console.log("Shape selected in properties:", e.shape)
     }
+
+    
+
 
 }

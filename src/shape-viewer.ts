@@ -1,3 +1,4 @@
+import { PropertiesComponent } from "./shape-properties.js"
 import { Shape } from "./shapes.js"
 
 export class ShapeSelectionEvent {
@@ -37,7 +38,11 @@ export interface ShapeViewer {
 
     clearSelection(): void
 
+    addShapeSelectionListener(listener: ShapeSelectionListener): void
+    
     toString(): string
+
+    _properties: PropertiesComponent
 }
 
 export class ShapeViewerImpl implements ShapeViewer {
@@ -50,18 +55,7 @@ export class ShapeViewerImpl implements ShapeViewer {
 
     private _selectedShape: Shape | null
 
-    private _selectionListeners: ShapeSelectionListener[]
-
     private _listeners: ShapeSelectionListener[]
-
-
-    public addSelectionListener(listener: ShapeSelectionListener): void {
-        this._selectionListeners.push(listener)
-    }
-
-    private fireSelectionEvent(e: ShapeSelectionEvent): void {
-        this._selectionListeners.forEach(listener => listener.shapeSelected(e))
-    }
 
     /**
      * Creates new ShapeViewerImpl for the canvas
@@ -112,7 +106,7 @@ export class ShapeViewerImpl implements ShapeViewer {
 
             this.draw()
 
-            this.fireSelectionEvent(new ShapeSelectionEvent(this._selectedShape))
+            this._properties.setSelectedShape(shape)
         }
     }
 
@@ -120,12 +114,12 @@ export class ShapeViewerImpl implements ShapeViewer {
         this.selectShape(null)
     }
 
-    public addShapeSelectionListener(listener: ShapeSelectionListener): void {
+    public addSelectionListener(listener: ShapeSelectionListener): void {
         this._listeners.push(listener)
     }
 
-    private fireShapeSelected(shape: Shape): void {
-        this._listeners.forEach(listener => listener.shapeSelected(shape))
+    private fireSelectionEvent(shape: Shape): void {
+        this._listeners.forEach(listener => listener.shapeSelected(e))
     }
 
     public toString(): string {

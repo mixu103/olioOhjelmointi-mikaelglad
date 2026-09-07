@@ -7,12 +7,6 @@ export class ShapeSelectionEvent {
     }
 }
 export class ShapeViewerImpl {
-    addSelectionListener(listener) {
-        this._selectionListeners.push(listener);
-    }
-    fireSelectionEvent(e) {
-        this._selectionListeners.forEach(listener => listener.shapeSelected(e));
-    }
     /**
      * Creates new ShapeViewerImpl for the canvas
      */
@@ -56,17 +50,17 @@ export class ShapeViewerImpl {
         if (this._selectedShape != shape) {
             this._selectedShape = shape;
             this.draw();
-            this.fireSelectionEvent(new ShapeSelectionEvent(this._selectedShape));
+            this._properties.setSelectedShape(shape);
         }
     }
     clearSelection() {
         this.selectShape(null);
     }
-    addShapeSelectionListener(listener) {
+    addSelectionListener(listener) {
         this._listeners.push(listener);
     }
-    fireShapeSelected(shape) {
-        this._listeners.forEach(listener => listener.shapeSelected(shape));
+    fireSelectionEvent(shape) {
+        this._listeners.forEach(listener => listener.shapeSelected(e));
     }
     toString() {
         return `ShapeViewer with ${this._shapes.length} shapes`;

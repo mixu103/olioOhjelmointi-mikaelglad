@@ -9,6 +9,14 @@ TS
 tsc
 tsc -w
 
+
+Tavoitteet:
+7.9. 3.8 osa 2 valmiiksi
+
+8.9. 3.8 osa 3 valmiiksi ja aloitetaan 3.9
+
+14-15.9 olisi hyvä saada valmiiksi kaikki
+
 TODO:
 
 - Päivitä UML kaavio 2.13 mukaan.
