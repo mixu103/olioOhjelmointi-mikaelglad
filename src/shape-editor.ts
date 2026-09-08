@@ -1,4 +1,4 @@
-import { AddShapeAction, SelectAction } from "./shape-actions.js"
+import { AddShapeAction, MoveAction, SelectAction } from "./shape-actions.js"
 import { PaletteComponent, PaletteListener, SelectedActionChangedEvent } from "./shape-palette.js"
 import { ShapeViewer, ShapeViewerImpl } from "./shape-viewer.js"
 import { Circle, Rectangle } from "./shapes.js"
@@ -22,6 +22,7 @@ export class ShapeEditor implements PaletteListener {
 
         this._palette = new PaletteComponent(document.getElementById("palette") as HTMLElement, [
             new SelectAction(this._shapeView),
+            new MoveAction(this._shapeView),
             new AddShapeAction(Rectangle, this._shapeView),
             new AddShapeAction(Circle, this._shapeView),
         ])

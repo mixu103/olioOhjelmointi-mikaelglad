@@ -8,6 +8,14 @@ class BaseAction {
     get id() {
         return this.name.toLowerCase().split(' ').join('-');
     }
+    onClick(e) {
+    }
+    onMouseDown(e) {
+    }
+    onMouseMove(e) {
+    }
+    onMouseUp(e) {
+    }
 }
 export class SelectAction extends BaseAction {
     get name() {
@@ -16,7 +24,7 @@ export class SelectAction extends BaseAction {
     get status() {
         return "Click an shape to select it.";
     }
-    onClick(e) {
+    onMouseDown(e) {
         console.log("Select action performed");
         const shape = this.shapeViewer.getShapeAt(e.offsetX, e.offsetY);
         if (shape) {
@@ -25,6 +33,22 @@ export class SelectAction extends BaseAction {
         else {
             this.shapeViewer.clearSelection();
         }
+    }
+    get name() {
+        return "Move";
+    }
+    get status() {
+        return "Drag to move a shape around.";
+    }
+}
+export class MoveAction extends BaseAction {
+    constructor() {
+        super(...arguments);
+        this.prevPoint = null;
+    }
+    onMouseDown(e) {
+        console.log("Move action performed");
+        this.prevPoint = new Point(e.offsetX, e.offsetY);
     }
 }
 export class AddShapeAction extends BaseAction {

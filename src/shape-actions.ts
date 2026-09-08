@@ -22,7 +22,11 @@ export interface CanvasAction {
      */
     onClick(e: MouseEvent): void
 
-}
+    onMouseDown(e: MouseEvent): void
+
+    onMouseMove(e: MouseEvent): void
+
+    onMouseUp(e: MouseEvent): void
 
 
 abstract class BaseAction implements CanvasAction {
@@ -45,7 +49,18 @@ abstract class BaseAction implements CanvasAction {
 
     public abstract get status(): string
 
-    public abstract onClick(e: MouseEvent): void
+    public onClick(e: MouseEvent): void {
+    }
+
+
+    public onMouseDown(e: MouseEvent): void {
+    }
+
+    public onMouseMove(e: MouseEvent): void {
+    }
+
+    public onMouseUp(e: MouseEvent): void {
+    }
 
 }
 
@@ -61,7 +76,7 @@ export class SelectAction extends BaseAction {
         return "Click an shape to select it."
     }
 
-    public onClick(e: MouseEvent): void {
+    public onMouseDown(e: MouseEvent): void {
         console.log("Select action performed")
 
         const shape: Shape | null = this.shapeViewer.getShapeAt(e.offsetX, e.offsetY)
@@ -73,9 +88,27 @@ export class SelectAction extends BaseAction {
         }
     }
 
+    public get name(): string {
+        return "Move"
+    }
+
+    public get status(): string {
+        return "Drag to move a shape around."
+    }
+
 }
 
+export class MoveAction extends BaseAction {
 
+     private prevPoint: Point = null
+
+     public onMouseDown(e: MouseEvent): void {
+        console.log("Move action performed")
+
+        this.prevPoint = new Point(e.offsetX, e.offsetY)
+     }
+
+}
 
 
 export class AddShapeAction extends BaseAction {
