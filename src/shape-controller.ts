@@ -8,8 +8,6 @@ export class CanvasController implements PaletteListener {
     public constructor(initialAction: CanvasAction, canvas: HTMLElement) {
         this._currentAction = initialAction
 
-        
-
         canvas.addEventListener("mousedown", (e:PointerEvent) => {
             this._currentAction.onMouseDown(e)
         })

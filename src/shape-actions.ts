@@ -27,7 +27,53 @@ export interface CanvasAction {
     onMouseMove(e: MouseEvent): void
 
     onMouseUp(e: MouseEvent): void
+}
 
+export class CompositionAction implements CanvasAction {
+
+    private _action: CanvasAction[]
+
+    public constructor(actions: CanvasAction[]) {
+        this._action = actions
+    }
+
+    public get name(): string {
+        let name = ""
+        this.actions.forEach(action => name += action.name + " ")
+        return name
+    }
+
+    public get id(): string{
+        let id = ""
+        this.actions.forEach(action => id += action.id + "-")
+        return id
+    }
+
+    public get status(): string {
+        let status = ""
+        this._actions.forEach(action => status += action.status + " ")
+        return status
+    }
+
+    onClick(e: MouseEvent): void {
+        this._actions.forEach(action => action.onClick(e))
+    }
+
+    onMouseDown(e: MouseEvent): void {
+        this._actions.forEach(action => action.onMouseDown(e))
+    }
+
+    onMouseMove(e: MouseEvent): void {
+        this._actions.forEach(action => action.onMouseUp(e))
+    }
+
+    onMouseUp(e: MouseEvent): void {
+        throw new Error("Method not implemented.")
+    }
+
+
+
+}
 
 abstract class BaseAction implements CanvasAction {
 
@@ -103,10 +149,11 @@ export class MoveAction extends BaseAction {
     private prevPoint: Point = null
 
     public onMouseDown(e: MouseEvent): void {
+        if (this.shapeViewer.getSelectedShapes().length > 0) {
+            this.prevPoint = new Point(e.offsetX, e.offsetY)
+        }
 
-        this.prevPoint = new Point(e.offsetX, e.offsetY)
-
-        console.log("Move action start", this.prevPoint)
+        console.log("Move action started", this.prevPoint)
     }
 
     public onMouseMove(e: MouseEvent): void {

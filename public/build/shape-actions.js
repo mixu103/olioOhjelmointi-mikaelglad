@@ -1,3 +1,35 @@
+export class CompositionAction {
+    constructor(actions) {
+        this._action = actions;
+    }
+    get name() {
+        let name = "";
+        this.actions.forEach(action => name += action.name + " ");
+        return name;
+    }
+    get id() {
+        let id = "";
+        this.actions.forEach(action => id += action.id + "-");
+        return id;
+    }
+    get status() {
+        let status = "";
+        this._actions.forEach(action => status += action.status + " ");
+        return status;
+    }
+    onClick(e) {
+        this._actions.forEach(action => action.onClick(e));
+    }
+    onMouseDown(e) {
+        this._actions.forEach(action => action.onMouseDown(e));
+    }
+    onMouseMove(e) {
+        this._actions.forEach(action => action.onMouseUp(e));
+    }
+    onMouseUp(e) {
+        throw new Error("Method not implemented.");
+    }
+}
 class BaseAction {
     constructor(shapeView) {
         this._shapeView = shapeView;
@@ -47,8 +79,10 @@ export class MoveAction extends BaseAction {
         this.prevPoint = null;
     }
     onMouseDown(e) {
-        this.prevPoint = new Point(e.offsetX, e.offsetY);
-        console.log("Move action start", this.prevPoint);
+        if (this.shapeViewer.getSelectedShapes().length > 0) {
+            this.prevPoint = new Point(e.offsetX, e.offsetY);
+        }
+        console.log("Move action started", this.prevPoint);
     }
     onMouseMove(e) {
         if (this.prevPoint) {
