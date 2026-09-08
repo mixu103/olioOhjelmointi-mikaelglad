@@ -1,5 +1,6 @@
 export class PropertiesComponent {
     constructor(propertiesElement) {
+        this._shape = null;
         propertiesElement.classList.add("v-box");
         const label = document.createElement("label");
         label.innerHTML = "Color";
@@ -22,7 +23,7 @@ export class PropertiesComponent {
         console.log("Shape selected in properties:", e.shape);
         this._shape = e.shape;
         if (this._shape == null) {
-            this._input.value = null;
+            this._input.value = "";
             this.setEnabled(false);
         }
         else {

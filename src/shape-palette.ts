@@ -1,4 +1,4 @@
-import { CanvasAction } from "./shape-actions";
+import { CanvasAction } from "./shape-actions.js";
 
 export class SelectedActionChangedEvent {
 

@@ -71,12 +71,13 @@ export class BaseShape {
      * @param style style used to draw shape
      */
     constructor(style) {
+        this._listeners = [];
         this._style = style;
     }
     addListener(listener) {
         this._listeners.push(listener);
     }
-    fireChangeEven(e) {
+    fireChangeEvent(e) {
         this._listeners.forEach(l => l.shapeChanged(e));
     }
     get style() {

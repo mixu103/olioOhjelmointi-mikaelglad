@@ -6,11 +6,6 @@ export class ShapeSelectionEvent {
         return this._shape;
     }
 }
-/**
- * viewer that displays and manages shapes
- *  */
-export class ShapeViewer {
-}
 export class ShapeViewerImpl {
     /**
      * Creates new ShapeViewerImpl for the canvas
@@ -24,7 +19,7 @@ export class ShapeViewerImpl {
         this._ctx = context;
         this._shapes = [];
         this._selectedShape = null;
-        this._listeners = [];
+        this._selectionListeners = [];
         this._selectionListeners = [];
     }
     /**
@@ -33,7 +28,7 @@ export class ShapeViewerImpl {
      */
     addShapes(shapes) {
         this._shapes.push(...shapes);
-        shape.addListener(this);
+        shapes.forEach(shape => shape.addListener(this));
         this.draw();
     }
     /**
@@ -42,6 +37,7 @@ export class ShapeViewerImpl {
      */
     addShape(shape) {
         this._shapes.push(shape);
+        shape.addListener(this);
         this.draw();
     }
     getShapeAt(x, y) {
@@ -56,17 +52,18 @@ export class ShapeViewerImpl {
         if (this._selectedShape != shape) {
             this._selectedShape = shape;
             this.draw();
-            this._properties.setSelectedShape(shape);
+            this.fireSelectionEvent(shape);
         }
     }
     clearSelection() {
         this.selectShape(null);
     }
-    addSelectionListener(listener) {
-        this._listeners.push(listener);
+    addShapeSelectionListener(listener) {
+        this._selectionListeners.push(listener);
     }
     fireSelectionEvent(shape) {
-        this._listeners.forEach(listener => listener.shapeSelected(e));
+        const event = new ShapeSelectionEvent(shape);
+        this._selectionListeners.forEach(listener => listener.shapeSelected(event));
     }
     toString() {
         return `ShapeViewer with ${this._shapes.length} shapes`;

@@ -1,9 +1,10 @@
 import { ShapeSelectionEvent, ShapeSelectionListener } from "./shape-viewer.js"
+import type { Shape } from "./shapes.js"
 
 
 export class PropertiesComponent implements ShapeSelectionListener {
 
-    private _shape: Shape
+    private _shape: Shape | null = null
 
     private _input: HTMLInputElement
 
@@ -42,7 +43,7 @@ export class PropertiesComponent implements ShapeSelectionListener {
 
 
         if (this._shape == null) {
-            this._input.value = null
+            this._input.value = ""
             this.setEnabled(false)
 
         } else {

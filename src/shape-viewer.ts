@@ -2,13 +2,13 @@ import { Shape, ShapeChangeEvent, ShapeChangeListener } from "./shapes.js"
 
 export class ShapeSelectionEvent {
 
-    private _shape: Shape
+    private _shape: Shape | null
 
-    constructor(shape: Shape) {
+    constructor(shape: Shape | null) {
         this._shape = shape
     }
 
-    public get shape(): Shape {
+    public get shape(): Shape | null {
         return this._shape
     }
 
@@ -22,7 +22,7 @@ export interface ShapeSelectionListener {
 /**
  * viewer that displays and manages shapes
  *  */
-export class ShapeViewer implements ShapeChangeListener {
+export interface ShapeViewer extends ShapeChangeListener {
 
     /**
      * Adds shapes to viewer
@@ -42,7 +42,6 @@ export class ShapeViewer implements ShapeChangeListener {
     
     toString(): string
 
-    _properties: PropertiesComponent
 }
 
 export class ShapeViewerImpl implements ShapeViewer {
@@ -55,7 +54,7 @@ export class ShapeViewerImpl implements ShapeViewer {
 
     private _selectedShape: Shape | null
 
-    private _listeners: ShapeSelectionListener[]
+    private _selectionListeners: ShapeSelectionListener[]
 
     /**
      * Creates new ShapeViewerImpl for the canvas
@@ -69,7 +68,7 @@ export class ShapeViewerImpl implements ShapeViewer {
         this._ctx = context
         this._shapes = []
         this._selectedShape = null
-        this._listeners = []
+        this._selectionListeners = []
         this._selectionListeners = []
     }
 
@@ -81,8 +80,7 @@ export class ShapeViewerImpl implements ShapeViewer {
      */
     public addShapes(shapes: Shape[]): void {
         this._shapes.push(...shapes)
-        shape.addListener(this)
-
+        shapes.forEach(shape => shape.addListener(this))
 
         this.draw()
     }
@@ -93,6 +91,7 @@ export class ShapeViewerImpl implements ShapeViewer {
      */
     public addShape(shape: Shape): void {
         this._shapes.push(shape)
+        shape.addListener(this)
         this.draw()
     }
 
@@ -111,7 +110,7 @@ export class ShapeViewerImpl implements ShapeViewer {
 
             this.draw()
 
-            this._properties.setSelectedShape(shape)
+            this.fireSelectionEvent(shape)
         }
     }
 
@@ -119,12 +118,13 @@ export class ShapeViewerImpl implements ShapeViewer {
         this.selectShape(null)
     }
 
-    public addSelectionListener(listener: ShapeSelectionListener): void {
-        this._listeners.push(listener)
+    public addShapeSelectionListener(listener: ShapeSelectionListener): void {
+        this._selectionListeners.push(listener)
     }
 
-    private fireSelectionEvent(shape: Shape): void {
-        this._listeners.forEach(listener => listener.shapeSelected(e))
+    private fireSelectionEvent(shape: Shape | null): void {
+        const event = new ShapeSelectionEvent(shape)
+        this._selectionListeners.forEach(listener => listener.shapeSelected(event))
     }
 
     public toString(): string {

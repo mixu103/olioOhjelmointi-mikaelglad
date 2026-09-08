@@ -131,6 +131,8 @@ export abstract class BaseShape implements Shape {
 
     private _style: string
 
+    private _listeners: ShapeChangeListener[] = []
+
     /**
      * 
      * @param style style used to draw shape
@@ -143,7 +145,7 @@ export abstract class BaseShape implements Shape {
         this._listeners.push(listener)
     }
 
-    private fireChangeEven(e: ShapeChangeEvent): void {
+    private fireChangeEvent(e: ShapeChangeEvent): void {
         this._listeners.forEach(l => l.shapeChanged(e))
     }
 
