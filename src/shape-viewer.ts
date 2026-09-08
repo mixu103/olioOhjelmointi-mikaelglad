@@ -104,6 +104,11 @@ export class ShapeViewerImpl implements ShapeViewer {
         return null
     }
 
+    public getSelectedShape(): Shape[] {
+        return [this._selectedShape]
+    }
+
+
     public selectShape(shape: Shape | null): void {
         if (this._selectedShape != shape) {
             this._selectedShape = shape

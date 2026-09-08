@@ -137,6 +137,9 @@ export class Rectangle extends BaseShape {
     setupPath(path) {
         path.rect(this.location.x, this.location.y, this.size.width, this.size.height);
     }
+    translate(vector) {
+        this.location = new Point(this.location.x + vector.x, this.location.y + vector.y);
+    }
     toString() {
         return `Rectangle with location ${this.location.toString()}, size ${this.size.toString()} and style ${super.toString()}`;
     }

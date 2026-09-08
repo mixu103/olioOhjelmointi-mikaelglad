@@ -48,6 +48,9 @@ export class ShapeViewerImpl {
         }
         return null;
     }
+    getSelectedShape() {
+        return [this._selectedShape];
+    }
     selectShape(shape) {
         if (this._selectedShape != shape) {
             this._selectedShape = shape;

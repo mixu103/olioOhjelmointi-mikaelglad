@@ -54,6 +54,7 @@ export class MoveAction extends BaseAction {
         if (this.prevPoint) {
             const currentPoint = new Point(e.offsetX, e.offsetY);
             const translationVector = new Point(currentPoint.x - this.prevPoint.x, currentPoint.y - this.prevPoint.y);
+            this.shapeViewer.getSelectedShapes().forEach(shape => shape.translate(translationVector));
             console.log("move moved", this.prevPoint, currentPoint);
             this.prevPoint = currentPoint;
         }

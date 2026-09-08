@@ -97,13 +97,13 @@ export interface ShapeChangeListener {
 
 export interface Shape {
 
-
-
     style: string
 
     readonly path: Path2D
 
     addListener(listener: ShapeChangeListener): void
+
+    translate(vector: Point): void
 
     /**
      * Draws shape
@@ -170,6 +170,8 @@ export abstract class BaseShape implements Shape {
 
     protected abstract setupPath(path: Path2D): void
 
+    public abstract translate(vector: Point): void
+
     public draw(ctx: CanvasRenderingContext2D): void {
         ctx.fillStyle = this.style
         ctx.fill(this.path)
@@ -230,6 +232,10 @@ export class Rectangle extends BaseShape {
 
     protected setupPath(path: Path2D): void {
         path.rect(this.location.x, this.location.y, this.size.width, this.size.height)
+    }
+
+    public translate(vector: Point): void {
+        this.location = new Point(this.location.x + vector.x, this.location.y + vector.y)
     }
 
    public override toString(): string {
