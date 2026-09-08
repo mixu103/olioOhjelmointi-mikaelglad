@@ -77,9 +77,33 @@ class Size {
     }
 }
 
+export class ShapeChangeEvent {
+
+    private _shape: Shape
+
+    public constructor(shape: Shape) {
+        this._shape = shape
+    }
+
+    public get shape(): Shape {
+        return this._shape
+    }
+}
+
+export interface ShapeChangeListener {
+
+    shapeChanged(e: ShapeChangeEvent): void
+}
+
 export interface Shape {
 
+
+
+    style: string
+
     readonly path: Path2D
+
+    addListener(listener: ShapeChangeListener): void
 
     /**
      * Draws shape
@@ -115,13 +139,24 @@ export abstract class BaseShape implements Shape {
         this._style = style
     }
 
+    public addListener(listener: ShapeChangeListener): void {
+        this._listeners.push(listener)
+    }
+
+    private fireChangeEven(e: ShapeChangeEvent): void {
+        this._listeners.forEach(l => l.shapeChanged(e))
+    }
+
     public get style(): string {
         return this._style
     }
 
     public set style(style: string) {
         this._style = style
+        
+        this.fireChangeEvent(new ShapeChangeEvent(this))
     }
+
 
     public get path(): Path2D {
         const path = new Path2D()

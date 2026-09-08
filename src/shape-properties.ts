@@ -5,6 +5,10 @@ export class PropertiesComponent implements ShapeSelectionListener {
 
     private _shape: Shape
 
+    private _input: HTMLInputElement
+
+    private _apply: HTMLButtonElement
+    
     public constructor(propertiesElement: HTMLElement) {
 
         propertiesElement.classList.add("v-box")
@@ -13,24 +17,23 @@ export class PropertiesComponent implements ShapeSelectionListener {
         label.innerHTML = "Color"
 
 
-        const input: HTMLInputElement = document.createElement("input")
-        
-        const apply: HTMLButtonElement = document.createElement("button")
-        apply.innerHTML = "Apply"
-        apply.addEventListener("click", _ => {
-
+        this._input = document.createElement("input")
+        this._apply = document.createElement("button")
+        this._apply.innerHTML = "Apply"
+        this._apply.addEventListener("click", _ => {
+            this._shape.style = this._input.value
         })
 
         propertiesElement.appendChild(label)
-        propertiesElement.appendChild(input)
-        propertiesElement.appendChild(apply)
+        propertiesElement.appendChild(this._input)
+        propertiesElement.appendChild(this._apply)
 
-        input.disabled = true
-        apply.disabled = true
+        this.setEnabled(false)
     }
 
-    private setenabled(enabled: boolean): void {
-    
+    private setEnabled(enabled: boolean): void {
+        this._input.disabled = !enabled
+        this._apply.disabled = !enabled
     }
 
     public shapeSelected(e: ShapeSelectionEvent): void {
@@ -38,9 +41,15 @@ export class PropertiesComponent implements ShapeSelectionListener {
         this._shape = e.shape
 
 
-    }
+        if (this._shape == null) {
+            this._input.value = null
+            this.setEnabled(false)
 
-    
+        } else {
+            this._input.value = this._shape.style
+            this.setEnabled(true)
+        }
+    }
 
 
 }

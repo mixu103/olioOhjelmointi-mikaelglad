@@ -1,5 +1,4 @@
-import { PropertiesComponent } from "./shape-properties.js"
-import { Shape } from "./shapes.js"
+import { Shape, ShapeChangeEvent, ShapeChangeListener } from "./shapes.js"
 
 export class ShapeSelectionEvent {
 
@@ -12,6 +11,7 @@ export class ShapeSelectionEvent {
     public get shape(): Shape {
         return this._shape
     }
+
 }
 
 export interface ShapeSelectionListener {
@@ -22,7 +22,7 @@ export interface ShapeSelectionListener {
 /**
  * viewer that displays and manages shapes
  *  */
-export interface ShapeViewer {
+export class ShapeViewer implements ShapeChangeListener {
 
     /**
      * Adds shapes to viewer
@@ -73,12 +73,17 @@ export class ShapeViewerImpl implements ShapeViewer {
         this._selectionListeners = []
     }
 
+
+
     /**
      * Adds multiple shapes
      * @param shapes shapes to add
      */
     public addShapes(shapes: Shape[]): void {
         this._shapes.push(...shapes)
+        shape.addListener(this)
+
+
         this.draw()
     }
 
@@ -124,6 +129,11 @@ export class ShapeViewerImpl implements ShapeViewer {
 
     public toString(): string {
         return `ShapeViewer with ${this._shapes.length} shapes`
+    }
+
+
+    public shapeChanged(e: ShapeChangeEvent): void {
+        this.draw()
     }
 
     private draw(): void {

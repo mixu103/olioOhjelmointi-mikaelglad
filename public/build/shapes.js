@@ -51,6 +51,14 @@ class Size {
         return `(${this._width}, ${this._height})`;
     }
 }
+export class ShapeChangeEvent {
+    constructor(shape) {
+        this._shape = shape;
+    }
+    get shape() {
+        return this._shape;
+    }
+}
 export class BaseShape {
     /**
      * Functionality for shapes
@@ -65,11 +73,18 @@ export class BaseShape {
     constructor(style) {
         this._style = style;
     }
+    addListener(listener) {
+        this._listeners.push(listener);
+    }
+    fireChangeEven(e) {
+        this._listeners.forEach(l => l.shapeChanged(e));
+    }
     get style() {
         return this._style;
     }
     set style(style) {
         this._style = style;
+        this.fireChangeEvent(new ShapeChangeEvent(this));
     }
     get path() {
         const path = new Path2D();

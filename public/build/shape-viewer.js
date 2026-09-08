@@ -6,6 +6,11 @@ export class ShapeSelectionEvent {
         return this._shape;
     }
 }
+/**
+ * viewer that displays and manages shapes
+ *  */
+export class ShapeViewer {
+}
 export class ShapeViewerImpl {
     /**
      * Creates new ShapeViewerImpl for the canvas
@@ -28,6 +33,7 @@ export class ShapeViewerImpl {
      */
     addShapes(shapes) {
         this._shapes.push(...shapes);
+        shape.addListener(this);
         this.draw();
     }
     /**
@@ -64,6 +70,9 @@ export class ShapeViewerImpl {
     }
     toString() {
         return `ShapeViewer with ${this._shapes.length} shapes`;
+    }
+    shapeChanged(e) {
+        this.draw();
     }
     draw() {
         this._ctx.clearRect(0, 0, this._canvas.width, this._canvas.height);
