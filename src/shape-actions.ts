@@ -100,12 +100,40 @@ export class SelectAction extends BaseAction {
 
 export class MoveAction extends BaseAction {
 
-     private prevPoint: Point = null
+    private prevPoint: Point = null
 
-     public onMouseDown(e: MouseEvent): void {
-        console.log("Move action performed")
+    public onMouseDown(e: MouseEvent): void {
 
         this.prevPoint = new Point(e.offsetX, e.offsetY)
+
+        console.log("Move action start", this.prevPoint)
+    }
+
+    public onMouseMove(e: MouseEvent): void {
+
+        if (this.prevPoint) {
+            const currentPoint = new Point(e.offsetX, e.offsetY)
+
+            const translationVector = new Point(currentPoint.x - this.prevPoint.x, currentPoint.y - this.prevPoint.y)
+
+            console.log("move moved", this.prevPoint, currentPoint)
+            
+            this.prevPoint = currentPoint
+        }
+        
+    }
+
+    public onMouseUp(e: MouseEvent): void {
+        this.prevPoint = null
+    }
+
+
+     public get name(): string {
+        return "Move"
+     }
+
+     public get status(): string {
+        return "Drag to move a shape around."
      }
 
 }

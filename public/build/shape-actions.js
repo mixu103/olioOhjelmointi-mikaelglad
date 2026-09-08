@@ -47,8 +47,25 @@ export class MoveAction extends BaseAction {
         this.prevPoint = null;
     }
     onMouseDown(e) {
-        console.log("Move action performed");
         this.prevPoint = new Point(e.offsetX, e.offsetY);
+        console.log("Move action start", this.prevPoint);
+    }
+    onMouseMove(e) {
+        if (this.prevPoint) {
+            const currentPoint = new Point(e.offsetX, e.offsetY);
+            const translationVector = new Point(currentPoint.x - this.prevPoint.x, currentPoint.y - this.prevPoint.y);
+            console.log("move moved", this.prevPoint, currentPoint);
+            this.prevPoint = currentPoint;
+        }
+    }
+    onMouseUp(e) {
+        this.prevPoint = null;
+    }
+    get name() {
+        return "Move";
+    }
+    get status() {
+        return "Drag to move a shape around.";
     }
 }
 export class AddShapeAction extends BaseAction {
